@@ -7,31 +7,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="icon" type="image/x-icon" href="{% static 'images/fav.ico' %}">
-  <style>
-    .logo-wrapper {
-      padding: 0 20px;
-      text-align: center;
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    }
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-    .logo-wrapper img {
-      max-width: 100%;
-      height: auto;
-      transition: 0.3s ease-in-out;
-    }
+  body {
+    font-family: sans-serif;
+  }
 
-    .logo-wrapper img:hover {
-      opacity: 0.85;
-    }
+  .logo-wrapper {
+    width: 100%;
+  }
 
-    body {
-      margin: 0;
-      background: #f0f0f0;
-      font-family: Arial, sans-serif;
-    }
-  </style>
+  .logo-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .logo-wrapper img:hover {
+    opacity: 0.85;
+  }
+</style>
+
+
 </head>
 <body>
 
