@@ -1,1 +1,1 @@
-web: gunicorn staticserve.wsgi
+web: gunicorn InaDigi.wsgi
