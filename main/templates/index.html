@@ -7,39 +7,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="icon" type="image/x-icon" href="{% static 'images/fav.ico' %}">
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  body {
-    font-family: sans-serif;
-  }
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      font-family: sans-serif;
+      background-color: #ffffff;
+    }
 
-  .logo-wrapper {
-    width: 100%;
-  }
+    .logo-wrapper {
+      width: 100%;
+    }
 
-  .logo-wrapper img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
+    .logo-wrapper picture,
+    .logo-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
 
-  .logo-wrapper img:hover {
-    opacity: 0.85;
-  }
-</style>
-
-
+    .logo-wrapper img:hover {
+      opacity: 0.95;
+      transition: opacity 0.3s ease;
+    }
+  </style>
 </head>
 <body>
 
   <div class="logo-wrapper">
     <a href="https://www.instagram.com/inadigiway" target="_blank" rel="noopener noreferrer">
-      <img src="{% static 'images/DigiWay.svg' %}" alt="In A Digi Way">
+      <picture>
+        <source media="(max-width: 768px)" srcset="{% static 'images/DigiWay.png' %}">
+        <img src="{% static 'images/DigiWay.svg' %}" alt="In A Digi Way">
+      </picture>
     </a>
   </div>
 
