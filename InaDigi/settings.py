@@ -27,6 +27,10 @@ SECRET_KEY = 'django-insecure-ic!$k2v*6xdjoyn!xu^md12&7-%qy_egr&sda(zfuc6)z9i+s3
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = [
+    'https://inadigiway.com',
+    'https://www.inadigiway.com',
+]
 
 
 # Application definition
