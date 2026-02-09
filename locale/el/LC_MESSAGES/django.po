@@ -1,0 +1,296 @@
+# Greek translations for InaDigiWay
+# Copyright (C) 2026 InaDigiWay
+msgid ""
+msgstr ""
+"Project-Id-Version: InaDigiWay 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-05 23:15+0000\n"
+"PO-Revision-Date: 2026-02-05 23:15+0000\n"
+"Last-Translator: InaDigiWay Team\n"
+"Language-Team: Greek\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: templates/main/partials/_header.html
+msgid "HOME"
+msgstr "ΑΡΧΙΚΗ"
+
+msgid "ABOUT"
+msgstr "ΣΧΕΤΙΚΑ"
+
+msgid "SERVICES"
+msgstr "ΥΠΗΡΕΣΙΕΣ"
+
+msgid "CONTACT"
+msgstr "ΕΠΙΚΟΙΝΩΝΙΑ"
+
+msgid "BOOK A CALL TODAY"
+msgstr "ΚΛΕΙΣΕ ΡΑΝΤΕΒΟΥ"
+
+#: templates/main/partials/_hero.html
+msgid "Digital Solutions That Convert"
+msgstr "Ψηφιακές Λύσεις που Μετατρέπουν"
+
+msgid "Your Online Success Starts Here"
+msgstr "Η Επιτυχία Σας Στο Διαδίκτυο Ξεκινά Εδώ"
+
+#: templates/main/partials/_about.html
+msgid "ABOUT US"
+msgstr "ΣΧΕΤΙΚΑ ΜΕ ΕΜΑΣ"
+
+msgid "We are a digital marketing agency dedicated to delivering innovative solutions that drive growth and success for your business."
+msgstr "Είμαστε μια ψηφιακή μάρκετινγκ αγορά αφιερωμένη στη παροχή καινοτόμων λύσεων που προωθούν την ανάπτυξη και την επιτυχία της επιχείρησής σας."
+
+msgid "Learn More"
+msgstr "ΜΑΘΕ ΠΕΡΙΣΣΟΤΕΡΑ"
+
+#: templates/main/partials/_services_layout.html
+msgid "WEB DESIGN"
+msgstr "ΣΧΕΔΙΑΣΜΟΣ ΙΣΤΟΣΕΛΙΔΩΝ"
+
+msgid "Create beautiful and functional websites that engage your audience."
+msgstr "Δημιουργήστε όμορφες και λειτουργικές ιστοσελίδες που ελκύουν το κοινό σας."
+
+msgid "WEB DEVELOPMENT"
+msgstr "ΑΝΑΠΤΥΞΗ ΙΣΤΟΣΕΛΙΔΩΝ"
+
+msgid "Build powerful web applications with the latest technologies."
+msgstr "Κτίστε ισχυρές διαδικτυακές εφαρμογές με τις τελευταίες τεχνολογίες."
+
+msgid "MOBILE APP"
+msgstr "ΕΦΑΡΜΟΓΗ ΚΙΝΗΤΟΥ"
+
+msgid "Develop native and cross-platform mobile applications."
+msgstr "Αναπτύξτε εγγενείς και cross-platform εφαρμογές κινητού."
+
+msgid "BRANDING"
+msgstr "ΤΑΥΤΟΤΗΤΑ ΕΠΙΧΕΙΡΗΣΗΣ"
+
+msgid "Build a strong brand identity that resonates with your audience."
+msgstr "Δημιουργήστε μια ισχυρή ταυτότητα επιχείρησης που αντηχεί στο κοινό σας."
+
+msgid "Build a memorable brand identity that connects with your audience and stands out from the crowd."
+msgstr "Δημιουργήστε μια αξέχαστη ταυτότητα που συνδέεται με το κοινό σας και ξεχωρίζει από το πλήθος."
+
+msgid "SOCIAL MEDIA"
+msgstr "ΚΟΙΝΩΝΙΚΑ ΔΙΚΤΥΑ"
+
+msgid "Boost your online presence with strategic social media management."
+msgstr "Ενισχύστε την παρουσία σας στο διαδίκτυο με στρατηγική διαχείριση κοινωνικών δικτύων."
+
+msgid "Learn more"
+msgstr "ΜΑΘΕ ΠΕΡΙΣΣΟΤΕΡΑ"
+
+#: templates/main/partials/_happy_clients.html
+msgid "HAPPY CLIENTS"
+msgstr "ΕΥΧΑΡΙΣΤΗΜΕΝΟΙ ΠΕΛΑΤΕΣ"
+
+msgid "Amazing Brands Trust Us"
+msgstr "Εξαιρετικές Μάρκες Μας Εμπιστεύονται"
+
+#: templates/main/partials/_contact.html
+msgid "CONTACT FORM"
+msgstr "ΦΟΡΜΑ ΕΠΙΚΟΙΝΩΝΙΑΣ"
+
+msgid "Name"
+msgstr "Όνομα"
+
+msgid "Phone"
+msgstr "Τηλέφωνο"
+
+msgid "E-mail"
+msgstr "Email"
+
+msgid "Service"
+msgstr "Υπηρεσία"
+
+msgid "Budget"
+msgstr "Προϋπολογισμός"
+
+msgid "Message"
+msgstr "Μήνυμα"
+
+msgid "Select a service"
+msgstr "Επιλέξτε μια υπηρεσία"
+
+msgid "Web Design"
+msgstr "Σχεδιασμός Ιστοσελίδων"
+
+msgid "Web Development"
+msgstr "Ανάπτυξη Ιστοσελίδων"
+
+msgid "Mobile App"
+msgstr "Εφαρμογή Κινητού"
+
+msgid "Branding"
+msgstr "Ταυτότητα Επιχείρησης"
+
+msgid "Social Media Marketing"
+msgstr "Μάρκετινγκ Κοινωνικών Δικτύων"
+
+msgid "Other"
+msgstr "Άλλο"
+
+msgid "Select budget"
+msgstr "Επιλέξτε προϋπολογισμό"
+
+msgid "$0 - $5,000"
+msgstr "$0 - $5.000"
+
+msgid "$5,000 - $10,000"
+msgstr "$5.000 - $10.000"
+
+msgid "$10,000 - $25,000"
+msgstr "$10.000 - $25.000"
+
+msgid "$25,000+"
+msgstr "$25.000+"
+
+msgid "SUBMIT"
+msgstr "ΥΠΟΒΟΛΗ"
+
+#: templates/main/partials/_footer.html
+msgid "P."
+msgstr "Τηλ."
+
+msgid "E."
+msgstr "Email"
+
+msgid "All rights reserved"
+msgstr "Όλα τα δικαιώματα διατηρούνται"
+
+msgid "Professional digital marketing agency offering web design, development, and digital marketing solutions."
+msgstr "Επαγγελματική ψηφιακή μάρκετινγκ αγορά που προσφέρει σχεδιασμό ιστοσελίδων, ανάπτυξη και ψηφιακές λύσεις μάρκετινγκ."
+
+msgid "Digital Marketing Agency"
+msgstr "Ψηφιακή Μάρκετινγκ Αγορά"
+
+#: New translations for templates
+msgid "IN A DIGI WAY"
+msgstr "IN A DIGI WAY"
+
+msgid "DIGITAL WAY"
+msgstr "DIGITAL WAY"
+
+msgid "A digital agency"
+msgstr "Μια ψηφιακή εταιρεία"
+
+msgid "focused on"
+msgstr "εστιασμένη στο"
+
+msgid "GROWTH!"
+msgstr "ΑΝΑΠΤΥΞΗ!"
+
+msgid "SOCIAL MEDIA"
+msgstr "ΚΟΙΝΩΝΙΚΑ ΔΙΚΤΥΑ"
+
+msgid "MARKETING"
+msgstr "MARKETING"
+
+msgid "When there's one great thing, there's usually another. What's your second thing to showcase?"
+msgstr "Όταν υπάρχει ένα υπέροχο πράγμα, συνήθως υπάρχει και ένα άλλο. Ποιο είναι το δεύτερο πράγμα σας;"
+
+msgid "VIEW INST ACC"
+msgstr "ΔΕΣ ΤΟ INSTAGRAM"
+
+msgid "Who's behind the Digi?"
+msgstr "Ποιος κρύβεται πίσω από το Digi;"
+
+msgid "Ina Lasko - a digital creative,"
+msgstr "Ina Lasko - μια ψηφιακή δημιουργός,"
+
+msgid "based in Athens with a passion for brands that want to stand out!"
+msgstr "με έδρα την Αθήνα και αδυναμία στα brands που θέλουν να ξεχωρίσουν!"
+
+msgid "Through"
+msgstr "Μέσα από το"
+
+msgid "In A Digi Way,"
+msgstr "In A Digi Way,"
+
+msgid "she combines strategic marketing with refined aesthetics, to give your social media, email campaigns and content a touch of... digital magic!"
+msgstr "συνδυάζει το στρατηγικό marketing με την προσεγμένη αισθητική, για να δώσει στα social media, τα email campaigns και το content σου μια δόση... ψηφιακής μαγείας!"
+
+msgid "Our Services"
+msgstr "Οι Υπηρεσίες μας"
+
+msgid "SOCIAL MEDIA MARKETING"
+msgstr "ΜΑΡΚΕΤΙΝΓ ΚΟΙΝΩΝΙΚΩΝ ΔΙΚΤΥΩΝ"
+
+msgid "Grow your brand presence with data-driven social media strategies. Instagram, TikTok, Facebook & more."
+msgstr "Αναπτύξτε την παρουσία της μάρκας σας με στρατηγικές κοινωνικών δικτύων. Instagram, TikTok, Facebook & άλλα."
+
+msgid "EMAIL MARKETING"
+msgstr "EMAIL MARKETING"
+
+msgid "Build lasting relationships with targeted email campaigns that convert subscribers into loyal customers."
+msgstr "Δημιουργήστε μακροχρόνιες σχέσεις με στοχευμένες καμπάνιες email που μετατρέπουν τους συνδρομητές σε πιστούς πελάτες."
+
+msgid "CONTENT CREATION & MARKETING"
+msgstr "ΔΗΜΙΟΥΡΓΙΑ & ΜΑΡΚΕΤΙΝΓ ΠΕΡΙΕΧΟΜΕΝΟΥ"
+
+msgid "Compelling stories, stunning visuals & engaging copy that captivate your audience and drive results."
+msgstr "Συναρπαστικές ιστορίες, εντυπωσιακά οπτικά και κείμενο που αιχμαλωτίζει το κοινό σας και φέρνει αποτελέσματα."
+
+msgid "CONTENT CREATION"
+msgstr "ΔΗΜΙΟΥΡΓΙΑ ΠΕΡΙΕΧΟΜΕΝΟΥ"
+
+msgid "& MARKETING"
+msgstr "& MARKETING"
+
+msgid "INFLUENCER MARKETING"
+msgstr "INFLUENCER MARKETING"
+
+msgid "Connect with the right influencers to amplify your message & reach new audiences authentically."
+msgstr "Συνδεθείτε με τους κατάλληλους influencers για να ενισχύσετε το μήνυμά σας & φτάστε νέα κοινά αυθεντικά."
+
+msgid "WEB DEVELOPMENT"
+msgstr "ΑΝΑΠΤΥΞΗ ΙΣΤΟΣΕΛΙΔΩΝ"
+
+msgid "Custom-built websites & web apps that are fast, secure, and designed for conversions."
+msgstr "Ιστοσελίδες & διαδικτυακές εφαρμογές κατασκευασμένες με τέχνη που είναι γρήγορες, ασφαλείς και σχεδιασμένες για μετατροπές."
+
+msgid "VIEW INST ACCOUNT"
+msgstr "ΔΕΣ ΤΟ INSTAGRAM"
+
+msgid "GET A QUOTE"
+msgstr "ΖΗΤΗΣΕ ΠΡΟΣΦΟΡΑ"
+
+msgid "she combines strategic marketing with refined aesthetics, to give your social media, email campaigns and content a touch of... digital magic!"
+msgstr "συνδυάζει το στρατηγικό marketing με την προσεγμένη αισθητική, για να δώσει στα social media, τα email campaigns και το content σου μια δόση... ψηφιακής μαγείας!"
+
+msgid "Our Services"
+msgstr "Οι Υπηρεσίες μας"
+
+msgid "SOCIAL MEDIA MARKETING"
+msgstr "MARKETING ΚΟΙΝΩΝΙΚΩΝ ΔΙΚΤΥΩΝ"
+
+msgid "EMAIL MARKETING"
+msgstr "EMAIL MARKETING"
+
+msgid "CONTENT CREATION & MARKETING"
+msgstr "ΔΗΜΙΟΥΡΓΙΑ & ΜΑΡΚΕΤΙΝΓ ΠΕΡΙΕΧΟΜΕΝΟΥ"
+
+msgid "INFLUENCER MARKETING"
+msgstr "INFLUENCER MARKETING"
+
+msgid "VIEW INST ACCOUNT"
+msgstr "ΔΕΣ ΤΟ INSTAGRAM"
+
+msgid "GET A QUOTE"
+msgstr "ΖΗΤΗΣΕ ΠΡΟΣΦΟΡΑ"
+
+msgid "Client testimonials coming soon..."
+msgstr "Οι μαρτυρίες των πελατών έρχονται σύντομα..."
+
+msgid "In A Digi Way. All rights reserved."
+msgstr "In A Digi Way. Όλα τα δικαιώματα διατηρούνται."
+
+msgid "BRANDING"
+msgstr "ΤΑΥΤΟΤΗΤΑ ΕΠΙΧΕΙΡΗΣΗΣ"
+
+msgid "Build a strong brand identity that resonates with your audience and stands out in the market."
+msgstr "Δημιουργήστε μια ισχυρή ταυτότητα επιχείρησης που αντηχεί στο κοινό σας και ξεχωρίζει στην αγορά."

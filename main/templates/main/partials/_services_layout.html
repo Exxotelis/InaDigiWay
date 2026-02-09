@@ -1,0 +1,89 @@
+{# Services Section with Alternating Layout #}
+{% load i18n %}
+{% load static %}
+<section class="services-layout" id="services" role="region" aria-label="Services showcase">
+  
+  <!-- Large Vertical Text (Left) -->
+  <div class="services-layout__mega-text services-layout__mega-text--left">
+    <span class="services-layout__mega-text-content">{% trans "IDEAS THAT CONVERT!" %}</span>
+  </div>
+  
+  <!-- Large Vertical Text (Right) -->
+  <div class="services-layout__mega-text services-layout__mega-text--right">
+    <span class="services-layout__mega-text-content">{% trans "IDEAS THAT CONVERT!" %}</span>
+  </div>
+  
+  <div class="services-layout__container">
+    
+    <!-- Service 1: Influencer Marketing -->
+    <article class="service-showcase service-showcase--right">
+      <div class="service-showcase__content">
+        <h3 class="service-showcase__title">{% trans "INFLUENCER MARKETING" %}</h3>
+        <p class="service-showcase__description">{% trans "Connect with the right influencers to amplify your message & reach new audiences authentically." %}</p>
+        <div class="service-showcase__actions">
+          <a href="#quote" class="service-showcase__btn service-showcase__btn--primary">{% trans "GET A QUOTE" %}</a>
+        </div>
+      </div>
+      <div class="service-showcase__image">
+        <img src="{% static 'images/services/influencer-marketing.jpg' %}" alt="Influencer Marketing" class="service-showcase__img">
+      </div>
+    </article>
+    
+    <!-- Service 2: Email Marketing -->
+    <article class="service-showcase service-showcase--left">
+      <div class="service-showcase__image">
+        <img src="{% static 'images/services/email-marketing.jpg' %}" alt="Email Marketing" class="service-showcase__img">
+      </div>
+      <div class="service-showcase__content">
+        <h3 class="service-showcase__title">{% trans "EMAIL MARKETING" %}</h3>
+        <p class="service-showcase__description">{% trans "Build lasting relationships with targeted email campaigns that convert subscribers into loyal customers." %}</p>
+        <div class="service-showcase__actions">
+          <a href="#quote" class="service-showcase__btn service-showcase__btn--primary">{% trans "GET A QUOTE" %}</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Service 3: Content Creation & Marketing -->
+    <article class="service-showcase service-showcase--right">
+      <div class="service-showcase__content">
+        <h3 class="service-showcase__title">{% trans "CONTENT CREATION" %}<br>{% trans "& MARKETING" %}</h3>
+        <p class="service-showcase__description">{% trans "Compelling stories, stunning visuals & engaging copy that captivate your audience and drive results." %}</p>
+        <div class="service-showcase__actions">
+          <a href="#quote" class="service-showcase__btn service-showcase__btn--primary">{% trans "GET A QUOTE" %}</a>
+        </div>
+      </div>
+      <div class="service-showcase__image">
+        <img src="{% static 'images/services/content-creation.jpg' %}" alt="Content Creation & Marketing" class="service-showcase__img">
+      </div>
+    </article>
+
+    <!-- Service 4: Web Development -->
+    <article class="service-showcase service-showcase--left">
+      <div class="service-showcase__image">
+        <img src="{% static 'images/services/web-development.jpg' %}" alt="Web Development" class="service-showcase__img">
+      </div>
+      <div class="service-showcase__content">
+        <h3 class="service-showcase__title">{% trans "WEB DEVELOPMENT" %}</h3>
+        <p class="service-showcase__description">{% trans "Custom-built websites & web apps that are fast, secure, and designed for conversions." %}</p>
+        <div class="service-showcase__actions">
+          <a href="#book-call" class="service-showcase__btn service-showcase__btn--primary">{% trans "BOOK A CALL TODAY" %}</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Service 5: Branding -->
+    <article class="service-showcase service-showcase--right">
+      <div class="service-showcase__content">
+        <h3 class="service-showcase__title">{% trans "BRANDING" %}</h3>
+        <p class="service-showcase__description">{% trans "Build a memorable brand identity that connects with your audience and stands out from the crowd." %}</p>
+        <div class="service-showcase__actions">
+          <a href="#book-call" class="service-showcase__btn service-showcase__btn--primary">{% trans "BOOK A CALL TODAY" %}</a>
+        </div>
+      </div>
+      <div class="service-showcase__image">
+        <img src="{% static 'images/demo-images/demo-digital-agency.jpg' %}" alt="Branding" class="service-showcase__img">
+      </div>
+    </article>
+
+  </div>
+</section>

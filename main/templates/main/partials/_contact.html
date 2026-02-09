@@ -1,0 +1,102 @@
+{# Contact Section #}
+{% load static %}
+{% load i18n %}
+<section class="contact" id="contact" role="region" aria-label="Contact form">
+  <div class="contact__container">
+    <div class="contact__wrapper">
+      
+      <!-- Left: Contact Form -->
+      <div class="contact__form-box">
+        <h2 class="contact__title">{% trans "CONTACT FORM" %}</h2>
+        
+        <form class="contact__form" method="POST" action="{% url 'contact_submit' %}" aria-label="Contact us form">
+          {% csrf_token %}
+          
+          <div class="contact__form-group">
+            <label for="contact-name" class="contact__label">{% trans "Name" %}</label>
+            <input type="text" id="contact-name" name="name" class="contact__input" required placeholder="">
+          </div>
+
+          <div class="contact__form-group">
+            <label for="contact-phone" class="contact__label">{% trans "Phone" %}</label>
+            <input type="tel" id="contact-phone" name="phone" class="contact__input" placeholder="">
+          </div>
+
+          <div class="contact__form-group">
+            <label for="contact-email" class="contact__label">{% trans "E-mail" %}</label>
+            <input type="email" id="contact-email" name="email" class="contact__input" required placeholder="">
+          </div>
+
+          <div class="contact__form-row">
+            <div class="contact__form-group">
+              <label for="contact-service" class="contact__label">{% trans "Service" %}</label>
+              <select id="contact-service" name="service" class="contact__select">
+                <option value="">{% trans "Select a service" %}</option>
+                <option value="web-design">{% trans "Web Design" %}</option>
+                <option value="web-development">{% trans "Web Development" %}</option>
+                <option value="mobile-app">{% trans "Mobile App" %}</option>
+                <option value="branding">{% trans "Branding" %}</option>
+                <option value="social-media">{% trans "Social Media Marketing" %}</option>
+                <option value="other">{% trans "Other" %}</option>
+              </select>
+            </div>
+
+            <div class="contact__form-group">
+              <label for="contact-budget" class="contact__label">{% trans "Budget" %}</label>
+              <select id="contact-budget" name="budget" class="contact__select">
+                <option value="">{% trans "Select budget" %}</option>
+                <option value="0-5000">{% trans "$0 - $5,000" %}</option>
+                <option value="5000-10000">{% trans "$5,000 - $10,000" %}</option>
+                <option value="10000-25000">{% trans "$10,000 - $25,000" %}</option>
+                <option value="25000+">{% trans "$25,000+" %}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="contact__form-group contact__form-group--message">
+            <label for="contact-message" class="contact__label">{% trans "Message" %}</label>
+            <textarea id="contact-message" name="message" class="contact__textarea" required placeholder=""></textarea>
+          </div>
+
+          <button type="submit" class="contact__submit-btn">{% trans "SUBMIT" %}</button>
+        </form>
+      </div>
+
+      <!-- Right: Happy Clients -->
+      <div class="contact__clients-box">
+        <h3 class="contact__clients-title">{% trans "HAPPY CLIENTS" %}</h3>
+        <div class="contact__clients-grid">
+          <div class="contact__client-item">
+            <img src="{% static 'images/brand-logos/VV-logo.png' %}" alt="Brand 1" class="contact__client-logo" />
+          </div>
+          <div class="contact__client-item">
+            <img src="{% static 'images/brand-logos/spotify.png' %}" alt="Spotify" class="contact__client-logo" />
+          </div>
+          <div class="contact__client-item">
+            <img src="{% static 'images/brand-logos/youtube.png' %}" alt="YouTube" class="contact__client-logo" />
+          </div>
+          <div class="contact__client-item">
+            <img src="{% static 'images/brand-logos/telegram.png' %}" alt="Telegram" class="contact__client-logo" />
+          </div>
+          <div class="contact__client-item">
+            <img src="{% static 'images/brand-logos/tiktok.png' %}" alt="TikTok" class="contact__client-logo" />
+          </div>
+          <div class="contact__client-item">
+            <img src="{% static 'images/brand-logos/snapchat.png' %}" alt="Snapchat" class="contact__client-logo" />
+          </div>
+          <div class="contact__client-item">
+            <img src="{% static 'images/brand-logos/search.png' %}" alt="Search" class="contact__client-logo" />
+          </div>
+          <div class="contact__client-item">
+            <img src="{% static 'images/brand-logos/profile-img.png' %}" alt="Profile" class="contact__client-logo" />
+          </div>
+          <div class="contact__client-item">
+            <img src="{% static 'images/brand-logos/02.png' %}" alt="Brand 2" class="contact__client-logo" />
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+

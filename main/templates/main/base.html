@@ -1,0 +1,73 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% trans 'Professional digital marketing agency offering web design, development, and digital marketing solutions.' %}">
+    <meta name="keywords" content="digital marketing, web design, web development, SEO, branding, social media marketing">
+    <meta name="author" content="InaDigiWay">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="InaDigiWay - {% trans 'Digital Marketing Agency' %}">
+    <meta property="og:description" content="{% trans 'Professional digital marketing agency offering web design, development, and digital marketing solutions.' %}">
+    <meta property="og:url" content="https://inadigiway.com">
+    <meta property="og:image" content="{% static 'images/og-image.png' %}">
+    <meta property="og:locale" content="{{ LANGUAGE_CODE }}">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="el_GR">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="InaDigiWay - {% trans 'Digital Marketing Agency' %}">
+    <meta name="twitter:description" content="{% trans 'Professional digital marketing agency offering web design, development, and digital marketing solutions.' %}">
+    
+    <title>InaDigiWay - {% trans 'Digital Marketing Agency' %}</title>
+    <link rel="canonical" href="https://inadigiway.com">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+    {% if ga4_measurement_id %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ ga4_measurement_id }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ ga4_measurement_id }}');
+    </script>
+    {% endif %}
+</head>
+<body data-calendly-url="{{ calendly_url|default:'' }}">
+    {% block content %}{% endblock %}
+  <div id="calendly-modal" class="calendly-modal" aria-hidden="true">
+    <div class="calendly-modal__overlay" data-calendly-close></div>
+    <div class="calendly-modal__content" role="dialog" aria-modal="true" aria-label="Book a call">
+      <button class="calendly-modal__close" type="button" aria-label="Close" data-calendly-close>×</button>
+      <iframe id="calendly-iframe" class="calendly-modal__iframe" title="Calendly" allow="camera; microphone; fullscreen" loading="lazy"></iframe>
+    </div>
+  </div>
+    <script defer src="{% static 'js/site.js' %}"></script>
+    <script defer src="{% static 'js/sticky-mega-text.js' %}"></script>
+    <script defer src="{% static 'js/services-mobile-order.js' %}"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "InaDigiWay",
+      "url": "https://inadigiway.com",
+      "logo": "https://inadigiway.com{% static 'images/brand-logos/logo.png' %}",
+      "description": "{% trans 'Professional digital marketing agency offering web design, development, and digital marketing solutions.' %}",
+      "sameAs": [
+        "https://facebook.com/inadigiway",
+        "https://instagram.com/inadigiway",
+        "https://linkedin.com/company/inadigiway"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Customer Service",
+        "email": "info@inadigiway.com",
+        "telephone": "+30 697 1907 299"
+      }
+    }
+    </script>
+</body>
+</html>

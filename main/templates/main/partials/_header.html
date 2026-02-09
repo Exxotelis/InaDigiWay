@@ -1,0 +1,30 @@
+{# Header/Navigation #}
+{% load static %}
+{% load i18n %}
+<header class="site-header" role="banner">
+  <nav class="site-header__nav" role="navigation" aria-label="Main navigation">
+    <div class="site-header__container">
+      
+      <ul class="site-header__menu site-header__menu--left">
+        <li><a href="#home" class="site-header__link">{% trans "HOME" %}</a></li>
+        <li><a href="#about" class="site-header__link">{% trans "ABOUT" %}</a></li>
+      </ul>
+
+      <div class="site-header__logo">
+        <a href="/" class="site-header__logo-link">
+          <img src="{% static 'images/logo.png' %}" alt="In A Digi Way" class="site-header__logo-img">
+        </a>
+      </div>
+
+      <ul class="site-header__menu site-header__menu--right">
+        <li><a href="#services" class="site-header__link">{% trans "SERVICES" %}</a></li>
+        <li><a href="#contact" class="site-header__link">{% trans "CONTACT" %}</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+{# Sticky "Book a Call" Button #}
+<div class="sticky-cta">
+  <a href="#book-call" class="sticky-cta__btn" data-calendly-url="{{ calendly_url|default:'' }}">{% trans "BOOK A CALL TODAY" %}</a>
+</div>

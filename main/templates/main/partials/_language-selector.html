@@ -1,0 +1,12 @@
+{# Language Selector #}
+{% load i18n %}
+<div class="language-selector">
+  <form method="get" action="{% url 'django.views.i18n.set_language' %}" style="display: inline;">
+    <select name="language" onchange="this.form.submit()">
+      {% get_available_languages as languages %}
+      {% for code, name in languages %}
+        <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>{{ name }}</option>
+      {% endfor %}
+    </select>
+  </form>
+</div>

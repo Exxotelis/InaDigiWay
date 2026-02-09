@@ -1,0 +1,29 @@
+{# Happy Clients Section #}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<section class="happy-clients" role="region" aria-label="Happy Clients">
+  <div class="happy-clients__container">
+    <h2 class="happy-clients__title">{% trans "HAPPY CLIENTS" %}</h2>
+    <div class="happy-clients__gallery">
+      {% if testimonials %}
+        {% for testimonial in testimonials %}
+          <article class="testimonial-card">
+            <p class="testimonial-card__quote">
+              “{% if LANGUAGE_CODE == 'el' and testimonial.quote_el %}{{ testimonial.quote_el }}{% elif testimonial.quote_en %}{{ testimonial.quote_en }}{% else %}{{ testimonial.quote }}{% endif %}”
+            </p>
+            <div class="testimonial-card__meta">
+              <span class="testimonial-card__name">{{ testimonial.name }}</span>
+              {% if testimonial.role or testimonial.company %}
+                <span class="testimonial-card__role">
+                  {% if testimonial.role %}{{ testimonial.role }}{% endif %}{% if testimonial.role and testimonial.company %} · {% endif %}{% if testimonial.company %}{{ testimonial.company }}{% endif %}
+                </span>
+              {% endif %}
+            </div>
+          </article>
+        {% endfor %}
+      {% else %}
+        <p class="happy-clients__placeholder">{% trans "Client testimonials coming soon..." %}</p>
+      {% endif %}
+    </div>
+  </div>
+</section>

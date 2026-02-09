@@ -1,0 +1,43 @@
+<!-- Language Selector for Header -->
+<div class="language-selector" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
+  <select onchange="changeLanguage(this.value)" style="padding: 8px 12px; border-radius: 4px; border: 2px solid #FA01A2; background-color: #fff; color: #333; font-weight: 600; cursor: pointer;">
+    <option value="/en/" selected>🇬🇧 English</option>
+    <option value="/el/">🇬🇷 Ελληνικά</option>
+  </select>
+</div>
+
+<script>
+function changeLanguage(lang_url) {
+  window.location.href = lang_url + window.location.pathname.split('/').slice(2).join('/');
+}
+</script>
+
+<!-- SEO Meta Tags (add to <head>) -->
+<meta name="description" content="Professional digital marketing agency offering web design, development, and digital marketing solutions.">
+<meta name="keywords" content="digital marketing, web design, web development, SEO, branding, social media marketing">
+<meta name="author" content="InaDigiWay">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="InaDigiWay - Digital Marketing Agency">
+<meta property="og:description" content="Professional digital marketing agency offering web design, development, and digital marketing solutions.">
+<meta property="og:url" content="https://inadigiway.com">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="InaDigiWay - Digital Marketing Agency">
+
+<!-- Schema.org Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "InaDigiWay",
+  "url": "https://inadigiway.com",
+  "logo": "https://inadigiway.com/static/images/logo.png",
+  "description": "Professional digital marketing agency offering web design, development, and digital marketing solutions.",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Customer Service",
+    "email": "info@inadigiway.com",
+    "telephone": "+30 697 1907 299"
+  }
+}
+</script>

@@ -1,0 +1,32 @@
+{# About Section #}
+{% load static %}
+{% load i18n %}
+<section class="about" id="about" role="region" aria-label="About section">
+  
+  <div class="about__content">
+    <div class="about__image-side">
+      <img src="{% static 'images/about/41.png' %}" alt="" class="about__badge about__badge--top-left" aria-hidden="true">
+      <img src="{% static 'images/about/74.png' %}" alt="" class="about__badge about__badge--bottom-left" aria-hidden="true">
+      <img src="{% static 'images/about/35.png' %}" alt="" class="about__badge about__badge--bottom-right" aria-hidden="true">
+      <div class="about__image-wrapper">
+        <img src="{% static 'images/InaDigi.jpg' %}" alt="Ina Lasko" class="about__image">
+      </div>
+    </div>
+    
+    <div class="about__text-side">
+      <h2 class="about__title">{% trans "Who's behind the Digi?" %}</h2>
+      
+      <p class="about__text">
+        <strong>{% trans "Ina Lasko - a digital creative," %}</strong><br>
+        {% trans "based in Athens with a passion for brands that want to stand out!" %}
+      </p>
+      
+      <p class="about__text">
+        {% trans "Through" %} <strong>{% trans "In A Digi Way," %}</strong><br>
+        {% trans "she combines strategic marketing with refined aesthetics, to give your social media, email campaigns and content a touch of... digital magic!" %}
+      </p>
+      
+      <a href="#book-call" class="about__cta-btn">{% trans "BOOK A CALL TODAY" %}</a>
+    </div>
+  </div>
+</section>
