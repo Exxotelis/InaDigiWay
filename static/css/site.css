@@ -925,6 +925,26 @@ button, input, select, textarea {
     border: 3px solid var(--color-aqua);
   }
 
+  .about__badge {
+    width: 70px;
+    height: 70px;
+  }
+
+  .about__badge--top-left {
+    top: -18px;
+    left: -18px;
+  }
+
+  .about__badge--bottom-left {
+    bottom: -18px;
+    left: -10px;
+  }
+
+  .about__badge--bottom-right {
+    bottom: -20px;
+    right: -12px;
+  }
+
   .about__title {
     font-size: 1rem;
   }
@@ -936,6 +956,28 @@ button, input, select, textarea {
   .about__cta-btn {
     font-size: 0.7rem;
     padding: var(--spacing-sm) var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .about__badge {
+    width: 60px;
+    height: 60px;
+  }
+
+  .about__badge--top-left {
+    top: -14px;
+    left: -14px;
+  }
+
+  .about__badge--bottom-left {
+    bottom: -14px;
+    left: -8px;
+  }
+
+  .about__badge--bottom-right {
+    bottom: -16px;
+    right: -10px;
   }
 }
 
@@ -1548,8 +1590,10 @@ button, input, select, textarea {
   }
 
   .happy-clients__gallery {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: var(--spacing-md);
+    width: 60%;
+    margin: 0 auto;
   }
 }
 
