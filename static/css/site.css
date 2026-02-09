@@ -546,7 +546,7 @@ button, input, select, textarea {
 }
 
 .hero__mega-text--left {
-  left: 16%;
+  left: 20%;
   width: auto;
   -webkit-text-stroke: 2px white;
   text-stroke: 2px white;
