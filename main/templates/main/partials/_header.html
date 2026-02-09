@@ -1,9 +1,15 @@
 {# Header/Navigation #}
 {% load static %}
 {% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 <header class="site-header" role="banner">
   <nav class="site-header__nav" role="navigation" aria-label="Main navigation">
     <div class="site-header__container">
+      <button class="site-header__burger" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       
       <ul class="site-header__menu site-header__menu--left">
         <li><a href="#home" class="site-header__link">{% trans "HOME" %}</a></li>
@@ -20,6 +26,52 @@
         <li><a href="#services" class="site-header__link">{% trans "SERVICES" %}</a></li>
         <li><a href="#contact" class="site-header__link">{% trans "CONTACT" %}</a></li>
       </ul>
+
+      <div class="site-header__lang site-header__lang--desktop">
+        <form method="post" action="{% url 'set_language' %}" class="lang-switch">
+          {% csrf_token %}
+          {% if LANGUAGE_CODE == 'el' %}
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <input type="hidden" name="language" value="en">
+            <button type="submit" class="lang-switch__btn" aria-label="English">
+              <img src="{% static 'images/flags/en.png' %}" alt="English" class="lang-switch__flag">
+            </button>
+          {% else %}
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <input type="hidden" name="language" value="el">
+            <button type="submit" class="lang-switch__btn" aria-label="Ελληνικά">
+              <img src="{% static 'images/flags/el.png' %}" alt="Ελληνικά" class="lang-switch__flag">
+            </button>
+          {% endif %}
+        </form>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="site-header__mobile">
+      <ul class="site-header__mobile-menu">
+        <li><a href="#home" class="site-header__link">{% trans "HOME" %}</a></li>
+        <li><a href="#about" class="site-header__link">{% trans "ABOUT" %}</a></li>
+        <li><a href="#services" class="site-header__link">{% trans "SERVICES" %}</a></li>
+        <li><a href="#contact" class="site-header__link">{% trans "CONTACT" %}</a></li>
+      </ul>
+      <div class="site-header__lang site-header__lang--mobile">
+        <form method="post" action="{% url 'set_language' %}" class="lang-switch">
+          {% csrf_token %}
+          {% if LANGUAGE_CODE == 'el' %}
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <input type="hidden" name="language" value="en">
+            <button type="submit" class="lang-switch__btn" aria-label="English">
+              <img src="{% static 'images/flags/en.png' %}" alt="English" class="lang-switch__flag">
+            </button>
+          {% else %}
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <input type="hidden" name="language" value="el">
+            <button type="submit" class="lang-switch__btn" aria-label="Ελληνικά">
+              <img src="{% static 'images/flags/el.png' %}" alt="Ελληνικά" class="lang-switch__flag">
+            </button>
+          {% endif %}
+        </form>
+      </div>
     </div>
   </nav>
 </header>

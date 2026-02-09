@@ -64,6 +64,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  // Burger menu toggle
+  const header = document.querySelector('.site-header');
+  const burger = document.querySelector('.site-header__burger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (burger && header && mobileMenu) {
+    burger.addEventListener('click', () => {
+      const isOpen = header.classList.toggle('site-header--open');
+      burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    mobileMenu.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener('click', () => {
+        header.classList.remove('site-header--open');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+
   // Per-letter hover zoom (headings/buttons/links only)
   const letterTargets = document.querySelectorAll(
     '.service-showcase__title, .services__title, .about__title, .happy-clients__title, .service-showcase__btn, .about__cta-btn, .sticky-cta__btn'
