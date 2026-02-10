@@ -2,11 +2,13 @@
 {% load static %}
 
 {% block content %}
-  {% include "main/partials/_header.html" %}
-  {% include "main/partials/_hero.html" %}
-  {% include "main/partials/_services_layout.html" %}
-  {% include "main/partials/_about.html" %}
-  {% include "main/partials/_happy_clients.html" %}
-  {% include "main/partials/_contact.html" %}
-  {% include "main/partials/_footer.html" %}
+  <div class="home-page">
+    {% include "main/partials/_header.html" %}
+    {% include "main/partials/_hero.html" %}
+    {% include "main/partials/_services_layout.html" %}
+    {% include "main/partials/_about.html" %}
+    {% include "main/partials/_happy_clients.html" %}
+    {% include "main/partials/_contact.html" %}
+    {% include "main/partials/_footer.html" %}
+  </div>
 {% endblock %}
