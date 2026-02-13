@@ -50,6 +50,39 @@
       <iframe id="calendly-iframe" class="calendly-modal__iframe" title="Calendly" allow="camera; microphone; fullscreen" loading="lazy"></iframe>
     </div>
   </div>
+  <!-- Quote modal -->
+  <div id="quote-modal" class="quote-modal" aria-hidden="true">
+    <div class="quote-modal__overlay" data-quote-close></div>
+    <div class="quote-modal__content" role="dialog" aria-modal="true" aria-label="Get a quote">
+      <button class="quote-modal__close" type="button" aria-label="Close" data-quote-close>×</button>
+      <h2>{% trans "Get a Quote" %}</h2>
+      <form id="quote-form" class="quote-form">
+        {% csrf_token %}
+        <label>{% trans "Name" %}
+          <input type="text" name="name" required placeholder="{% trans "Your name" %}">
+        </label>
+        <label>{% trans "Email" %}
+          <input type="email" name="email" required placeholder="{% trans "your@email.com" %}">
+        </label>
+        <label>{% trans "Phone" %}
+          <input type="text" name="phone" placeholder="{% trans "+30 69..." %}">
+        </label>
+        <label>{% trans "Service" %}
+          <input type="text" name="service" placeholder="{% trans "Service you're interested in" %}">
+        </label>
+        <label>{% trans "Budget" %}
+          <input type="text" name="budget" placeholder="{% trans "Estimated budget" %}">
+        </label>
+        <label>{% trans "Message" %}
+          <textarea name="message" rows="4" placeholder="{% trans "Tell us about your project..." %}"></textarea>
+        </label>
+        <div class="quote-form__actions">
+          <button type="submit" class="service-showcase__btn service-showcase__btn--primary">{% trans "Send Request" %}</button>
+        </div>
+        <div class="quote-form__status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
     <script defer src="{% static 'js/site.js' %}"></script>
     <script defer src="{% static 'js/sticky-mega-text.js' %}"></script>
     <script defer src="{% static 'js/services-mobile-order.js' %}"></script>

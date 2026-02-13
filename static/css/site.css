@@ -1,4 +1,15 @@
 /* ========================================
+   FONT FACES
+   ======================================== */
+
+@font-face {
+  font-family: 'Geologica';
+  src: url('/fonts/Geologica-VariableFont_CRSV,SHRP,slnt,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-stretch: 75% 125%;
+}
+
+/* ========================================
    RESET & BASE STYLES
    ======================================== */
 
@@ -14,7 +25,7 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: 'Geologica', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   line-height: 1.6;
   color: var(--color-dark-gray);
   background-color: transparent;
@@ -337,6 +348,42 @@ button, input, select, textarea {
   opacity: 0.7;
 }
 
+/* Header dropdown (desktop) */
+.site-header__menu .has-dropdown {
+  position: relative;
+}
+
+.site-header__dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--color-white);
+  list-style: none;
+  padding: 0.4rem;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  min-width: 220px;
+  z-index: 1200;
+}
+
+.site-header__dropdown li { padding: 0; }
+.site-header__dropdown a { display: block; padding: 0.5rem 0.8rem; color: var(--color-dark-gray); font-weight: 600; text-transform: none; }
+
+.site-header__menu .has-dropdown:hover .site-header__dropdown,
+.site-header__menu .has-dropdown:focus-within .site-header__dropdown { display: block; }
+
+.site-header__link--dropdown { background: transparent; border: none; cursor: pointer; }
+
+/* Mobile submenu */
+.site-header__mobile-submenu { display: none; list-style: none; padding-left: 0; margin: 0.5rem 0 0 0; }
+.site-header__mobile-toggle { background: transparent; border: none; font-weight: 700; cursor: pointer; padding: 0.4rem 0; width: 100%; text-align: left; }
+.mobile-has-submenu.open .site-header__mobile-submenu { display: block; }
+
+@media (max-width: 768px) {
+  .site-header__dropdown { display: none !important; }
+}
+
 @media (max-width: 768px) {
   .site-header {
     background-color: transparent !important;
@@ -501,6 +548,134 @@ button, input, select, textarea {
   border: 0;
 }
 
+/* Quote Modal (matches Calendly modal style) */
+.quote-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: none;
+}
+
+.quote-modal--open {
+  display: block;
+}
+
+.quote-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.quote-modal__content {
+  position: relative;
+  width: min(720px, 94vw);
+  margin: 6vh auto;
+  background: var(--color-white);
+  border-radius: 12px;
+  padding: var(--spacing-lg);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  max-height: 88vh;
+  overflow: auto;
+}
+
+.quote-modal__close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  z-index: 2;
+  background: var(--color-black);
+  color: var(--color-white);
+  border: none;
+  border-radius: 999px;
+  width: 32px;
+  height: 32px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.quote-form label { display: block; margin-bottom: var(--spacing-sm); }
+.quote-form input, .quote-form textarea { width: 100%; padding: .6rem; border-radius: 6px; border: 1px solid #ddd; }
+.quote-form__actions { display:flex; gap: .5rem; margin-top: var(--spacing-md); }
+.quote-form__status { margin-top: .75rem; color: var(--color-dark-gray); }
+
+/* Reuse contact form styles for quote modal form */
+.quote-modal .quote-form {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+
+.quote-modal .quote-form label {
+  display: block;
+  font-weight: 400;
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-dark-gray);
+  text-transform: capitalize;
+  font-size: 0.9rem;
+}
+
+.quote-modal .quote-form input,
+.quote-modal .quote-form textarea,
+.quote-modal .quote-form select {
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  background-color: var(--color-lime);
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  color: var(--color-dark-gray);
+  box-sizing: border-box;
+}
+
+.quote-modal .quote-form input::placeholder,
+.quote-modal .quote-form textarea::placeholder {
+  color: rgba(0,0,0,0.3);
+}
+
+.quote-modal .quote-form input:focus,
+.quote-modal .quote-form textarea:focus,
+.quote-modal .quote-form select:focus {
+  outline: none;
+  background-color: var(--color-lime);
+  box-shadow: inset 0 0 0 2px var(--color-pink);
+}
+
+.quote-modal .quote-form textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: inherit;
+}
+
+.quote-modal .quote-form__actions {
+  display: flex;
+  gap: .5rem;
+  margin-top: var(--spacing-md);
+}
+
+/* Style the submit button in quote modal like contact submit */
+.quote-modal .service-showcase__btn--primary {
+  padding: var(--spacing-md) var(--spacing-xl);
+  background-color: var(--color-aqua);
+  color: var(--color-white);
+  font-weight: bold;
+  font-size: 0.85rem;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  margin-top: var(--spacing-lg);
+  width: fit-content;
+  letter-spacing: 0.5px;
+  display: inline-block;
+}
+
+.quote-modal .service-showcase__btn--secondary {
+  padding: .6rem 1rem;
+  border-radius: 8px;
+}
+
 /* ========================================
    HERO SECTION
    ======================================== */
@@ -558,8 +733,8 @@ button, input, select, textarea {
 .hero__mega-text--left {
   left: 20%;
   width: auto;
-  -webkit-text-stroke: 2px white;
-  text-stroke: 2px white;
+  -webkit-text-stroke: 1px white;
+  text-stroke: 1px white;
   transform: translateX(-50%);
 }
 
@@ -567,8 +742,8 @@ button, input, select, textarea {
   right: 20%;
   width: auto;
   letter-spacing: 8px;
-  -webkit-text-stroke: 2px white;
-  text-stroke: 2px white;
+  -webkit-text-stroke: 1px white;
+  text-stroke: 1px white;
   font-weight: 900;
   transform: translateX(50%);
 }
@@ -580,22 +755,22 @@ button, input, select, textarea {
   transform: rotate(180deg);
   color: transparent;
   letter-spacing: 8px;
-  -webkit-text-stroke: 2px white;
-  text-stroke: 2px white;
+  -webkit-text-stroke: 1px white;
+  text-stroke: 1px white;
   font-weight: 900;
   white-space: nowrap;
 }
 
 .home-page .hero__mega-text--left .hero__mega-text-content {
   color: transparent;
-  -webkit-text-stroke: 2px white;
-  text-stroke: 2px white;
+  -webkit-text-stroke: 1px white;
+  text-stroke: 1px white;
 }
 
 .home-page .hero__mega-text--right .hero__mega-text-content {
   color: transparent;
-  -webkit-text-stroke: 2px white;
-  text-stroke: 2px white;
+  -webkit-text-stroke: 1px white;
+  text-stroke: 1px white;
 }
 
 .hero__content {
@@ -1256,8 +1431,8 @@ button, input, select, textarea {
   width: auto;
   top: 150px;
   transform: none;
-  -webkit-text-stroke: 2px var(--color-lime);
-  text-stroke: 2px var(--color-lime);
+  -webkit-text-stroke: 1px var(--color-lime);
+  text-stroke: 1px var(--color-lime);
 }
 
 .services-layout__mega-text--right {
@@ -1266,8 +1441,8 @@ button, input, select, textarea {
   width: auto;
   top: 150px;
   transform: none;
-  -webkit-text-stroke: 2px var(--color-lime);
-  text-stroke: 2px var(--color-lime);
+  -webkit-text-stroke: 1px var(--color-lime);
+  text-stroke: 1px var(--color-lime);
 }
 
 .home-page .services-layout__mega-text-content {
@@ -1277,22 +1452,22 @@ button, input, select, textarea {
   transform: rotate(180deg);
   color: transparent;
   letter-spacing: 8px;
-  -webkit-text-stroke: 2px var(--color-lime);
-  text-stroke: 2px var(--color-lime);
+  -webkit-text-stroke: 1px var(--color-lime);
+  text-stroke: 1px var(--color-lime);
   font-weight: 900;
   white-space: nowrap;
 }
 
 .home-page .services-layout__mega-text--left .services-layout__mega-text-content {
   color: transparent;
-  -webkit-text-stroke: 2px var(--color-lime);
-  text-stroke: 2px var(--color-lime);
+  -webkit-text-stroke: 1px var(--color-lime);
+  text-stroke: 1px var(--color-lime);
 }
 
 .home-page .services-layout__mega-text--right .services-layout__mega-text-content {
   color: transparent;
-  -webkit-text-stroke: 2px var(--color-lime);
-  text-stroke: 2px var(--color-lime);
+  -webkit-text-stroke: 1px var(--color-lime);
+  text-stroke: 1px var(--color-lime);
   transform: rotate(180deg) scaleY(-1);
 }
 
@@ -1669,8 +1844,8 @@ button, input, select, textarea {
   writing-mode: vertical-rl;
   text-orientation: mixed;
   transform: rotate(180deg);
-  -webkit-text-stroke: 2px var(--color-lime);
-  text-stroke: 2px var(--color-lime);
+  -webkit-text-stroke: 1px var(--color-lime);
+  text-stroke: 1px var(--color-lime);
   color: transparent;
   letter-spacing: 2px;
 }
@@ -2519,4 +2694,18 @@ button, input, select, textarea {
 
 .letter-hover:hover::after {
   opacity: 1;
+}
+
+/* Ensure per-letter hover works inside buttons */
+.service-showcase__btn .letter-hover {
+  overflow: visible;
+}
+.service-showcase__btn .letter-hover__char {
+  position: relative;
+  z-index: 2;
+}
+
+/* Slightly reduce scale for buttons to avoid overlap */
+.service-showcase__btn .letter-hover__char:hover {
+  transform: scale(1.6);
 }

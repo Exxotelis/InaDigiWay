@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from .models import SiteSettings, AnalyticsSettings, Testimonial
+from .models import QuoteRequest
 
 
 @admin.register(SiteSettings)
@@ -45,3 +46,10 @@ class TestimonialAdmin(admin.ModelAdmin):
 		("Fallback", {"fields": ("quote",)}),
 		("Display", {"fields": ("is_active", "sort_order")}),
 	)
+
+
+@admin.register(QuoteRequest)
+class QuoteRequestAdmin(admin.ModelAdmin):
+	list_display = ("name", "email", "phone", "service", "budget", "created_at")
+	search_fields = ("name", "email", "service", "message")
+	readonly_fields = ("created_at",)

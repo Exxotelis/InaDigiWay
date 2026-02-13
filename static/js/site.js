@@ -64,6 +64,76 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  // Quote modal handling
+  const quoteModal = document.getElementById('quote-modal');
+  const quoteForm = document.getElementById('quote-form');
+
+  const openQuoteModal = () => {
+    if (!quoteModal) return;
+    quoteModal.classList.add('quote-modal--open');
+    quoteModal.setAttribute('aria-hidden', 'false');
+  };
+  const closeQuoteModal = () => {
+    if (!quoteModal) return;
+    quoteModal.classList.remove('quote-modal--open');
+    quoteModal.setAttribute('aria-hidden', 'true');
+  };
+
+  document.querySelectorAll('[href="#get-quote"], [href="#quote"], [data-open-quote]').forEach(el => {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      openQuoteModal();
+    });
+  });
+
+  if (quoteModal) {
+    quoteModal.addEventListener('click', (event) => {
+      if (event.target.matches('[data-quote-close]')) closeQuoteModal();
+    });
+  }
+
+  // CSRF helper
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+
+  if (quoteForm) {
+    quoteForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const formData = new FormData(quoteForm);
+      const statusEl = quoteForm.querySelector('.quote-form__status');
+      statusEl.textContent = '';
+      try {
+        const res = await fetch('/quote/submit/', {
+          method: 'POST',
+          headers: { 'X-CSRFToken': getCookie('csrftoken') },
+          body: formData
+        });
+        const json = await res.json();
+        if (res.ok && json.status === 'success') {
+          statusEl.textContent = json.message || 'Thanks — request received.';
+          quoteForm.reset();
+          setTimeout(closeQuoteModal, 1200);
+        } else {
+          statusEl.textContent = json.message || 'An error occurred.';
+        }
+      } catch (err) {
+        statusEl.textContent = 'Network error. Please try again.';
+      }
+    });
+  }
+
   // Burger menu toggle
   const header = document.querySelector('.site-header');
   const burger = document.querySelector('.site-header__burger');
@@ -81,6 +151,16 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   }
+
+  // Mobile submenu toggle for Services
+  document.querySelectorAll('.site-header__mobile-toggle').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const li = btn.closest('.mobile-has-submenu');
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      if (li) li.classList.toggle('open', !expanded);
+    });
+  });
 
 
   // Per-letter hover zoom (headings/buttons/links only)

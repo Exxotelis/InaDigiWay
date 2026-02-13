@@ -49,3 +49,19 @@ class Testimonial(models.Model):
 
 	def __str__(self) -> str:
 		return f"{self.name}"
+
+
+class QuoteRequest(models.Model):
+	name = models.CharField(max_length=200)
+	email = models.EmailField()
+	phone = models.CharField(max_length=40, blank=True, default="")
+	service = models.CharField(max_length=200, blank=True, default="")
+	budget = models.CharField(max_length=100, blank=True, default="")
+	message = models.TextField(blank=True, default="")
+	created_at = models.DateTimeField(auto_now_add=True)
+
+	class Meta:
+		ordering = ("-created_at",)
+
+	def __str__(self) -> str:
+		return f"QuoteRequest from {self.name} <{self.email}>"
