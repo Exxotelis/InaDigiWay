@@ -2084,6 +2084,7 @@ button, a, nav {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   gap: 2.75rem;
+  align-items: stretch;
   background-color: #ececec;
   padding: 3.5rem 4rem 2.8rem;
   border: none;
@@ -2099,6 +2100,7 @@ button, a, nav {
   flex-direction: column;
   padding: 0;
   margin: 0;
+  height: 100%;
 }
 
 .contact__title {
@@ -2233,11 +2235,14 @@ button, a, nav {
 .contact__clients-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, minmax(0, 1fr));
   gap: 1.25rem 1.1rem;
   justify-items: center;
   align-items: center;
-  padding-top: 0.5rem;
-  height: auto;
+  padding-top: 0.2rem;
+  flex: 1;
+  height: 100%;
+  align-content: space-between;
 }
 
 .contact__client-item {
@@ -2277,8 +2282,16 @@ button, a, nav {
 
 @media (max-width: 768px) {
   .contact {
-    padding: var(--spacing-lg) var(--spacing-md);
-    background-color: var(--color-off-white);
+    padding: 0;
+    background: linear-gradient(
+      90deg,
+      var(--color-pink) 0%,
+      var(--color-pink) 10%,
+      var(--color-white) 10%,
+      var(--color-white) 90%,
+      var(--color-pink) 90%,
+      var(--color-pink) 100%
+    );
   }
 
   .contact::before,
@@ -2294,9 +2307,9 @@ button, a, nav {
     background-color: #E8E8E8 !important;
     padding: var(--spacing-lg) !important;
     border-radius: 0 !important;
-    margin: 0 auto !important;
-    width: 100% !important;
-    max-width: 92% !important;
+    margin: 0 10% !important;
+    width: auto !important;
+    max-width: none !important;
   }
 
   .contact__container {
@@ -2784,6 +2797,22 @@ button, a, nav {
   .services__grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* ========================================
+   GLOBAL CTA HOVER
+   ======================================== */
+
+:is(
+  .hero__service-btn,
+  .about__cta-btn,
+  .contact__submit-btn,
+  .service-showcase__btn--primary,
+  .service-card__btn--primary,
+  .quote-modal .service-showcase__btn--primary
+):hover {
+  background-color: var(--color-teal) !important;
+  transform: translateY(-2px);
 }
 
 /* ========================================
