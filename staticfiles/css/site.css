@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: 'Geologica';
-  src: url('/fonts/Geologica-VariableFont_CRSV,SHRP,slnt,wght.ttf') format('truetype');
+  src: url('../fonts/Geologica-VariableFont_CRSV,SHRP,slnt,wght.ttf') format('truetype');
   font-weight: 100 900;
   font-stretch: 75% 125%;
 }
@@ -22,6 +22,9 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
 }
 
 body {
@@ -32,6 +35,9 @@ body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
 }
 
 a {
@@ -43,6 +49,22 @@ a {
 button, input, select, textarea {
   font-family: inherit;
   font-size: inherit;
+}
+
+/* Global word-breaking rules for headings and buttons */
+h1, h2, h3, h4, h5, h6,
+[class*="title"], [class*="heading"] {
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
+}
+
+button, a, nav {
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
 }
 
 /* ========================================
@@ -333,7 +355,7 @@ button, input, select, textarea {
 
 .sticky-cta {
   position: fixed;
-  right: 0;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 99;
@@ -555,6 +577,8 @@ button, input, select, textarea {
   line-height: 1.1;
   text-transform: capitalize;
   max-width: 600px;
+  word-break: keep-all;
+  overflow-wrap: normal;
 }
 
 .hero__title-normal {
@@ -592,6 +616,26 @@ button, input, select, textarea {
   width: 100%;
 }
 
+.hero__service-preview--hero .service-showcase__title {
+  font-size: 1.85rem;
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+.hero__service-preview--hero .service-showcase__description {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  color: var(--color-dark-gray);
+}
+
+.hero__service-preview--hero .service-showcase__actions {
+  margin-top: 1.5rem;
+}
+
 .hero__service-image {
   position: relative;
   height: 250px;
@@ -619,6 +663,8 @@ button, input, select, textarea {
   color: var(--color-dark-gray);
   text-transform: uppercase;
   line-height: 1.2;
+  word-break: keep-all;
+  overflow-wrap: normal;
 }
 
 .hero__service-desc {
@@ -824,6 +870,8 @@ button, input, select, textarea {
   margin-bottom: var(--spacing-md);
   color: var(--color-pink);
   text-transform: uppercase;
+  word-break: keep-all;
+  overflow-wrap: normal;
 }
 
 .about__text {
@@ -921,6 +969,8 @@ button, input, select, textarea {
   text-align: center;
   margin-bottom: var(--spacing-2xl);
   color: var(--color-dark-gray);
+  word-break: keep-all;
+  overflow-wrap: normal;
 }
 
 .services__grid {
@@ -951,6 +1001,8 @@ button, input, select, textarea {
   margin-bottom: var(--spacing-md);
   color: var(--color-dark-gray);
   text-transform: uppercase;
+  word-break: keep-all;
+  overflow-wrap: normal;
 }
 
 .service-card__description {
@@ -1046,20 +1098,20 @@ button, input, select, textarea {
 
 .services-layout__mega-text--left {
   position: absolute;
-  left: 7.5%;
+  left: 20%;
   width: auto;
   top: 150px;
-  transform: none;
+  transform: translateX(-100%);
   -webkit-text-stroke: 2px var(--color-lime);
   text-stroke: 2px var(--color-lime);
 }
 
 .services-layout__mega-text--right {
   position: absolute;
-  right: 7.5%;
+  right: 20%;
   width: auto;
   top: 150px;
-  transform: none;
+  transform: translateX(100%);
   -webkit-text-stroke: 2px var(--color-lime);
   text-stroke: 2px var(--color-lime);
 }
@@ -1115,6 +1167,7 @@ button, input, select, textarea {
   min-height: 400px;
   margin: 0;
   max-width: 100%;
+  border: 2px solid var(--color-lime);
 }
 
 .service-showcase--left {
@@ -1187,6 +1240,7 @@ button, input, select, textarea {
   border: 2px solid transparent;
   display: inline-block;
   max-width: fit-content;
+  margin-top: 1.5rem;
 }
 
 .service-showcase__btn--primary {
@@ -1208,6 +1262,12 @@ button, input, select, textarea {
 .service-showcase__btn--secondary:hover {
   background-color: var(--color-dark-gray);
   color: var(--color-white);
+}
+
+/* Base styles for service showcase title */
+.service-showcase__title {
+  word-break: keep-all;
+  overflow-wrap: normal;
 }
 
 /* Tablet: 1024px and below */

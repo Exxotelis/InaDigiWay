@@ -163,38 +163,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 
-  // Per-letter hover zoom (headings/buttons/links only)
-  const letterTargets = document.querySelectorAll(
-    '.service-showcase__title, .services__title, .about__title, .happy-clients__title, .service-showcase__btn, .about__cta-btn, .sticky-cta__btn'
-  );
-
-  const splitToLetters = (el) => {
-    if (el.dataset.letterHover === 'true') return;
-    const text = el.textContent;
-    if (!text || text.trim().length === 0) return;
-    el.dataset.letterHover = 'true';
-    el.classList.add('letter-hover');
-    const frag = document.createDocumentFragment();
-    for (const ch of text) {
-      const span = document.createElement('span');
-      span.className = 'letter-hover__char';
-      span.textContent = ch === ' ' ? '\u00A0' : ch;
-      frag.appendChild(span);
-    }
-    el.textContent = '';
-    el.appendChild(frag);
-  };
-
-  letterTargets.forEach((el) => {
-    splitToLetters(el);
-    el.addEventListener('mousemove', (event) => {
-      const rect = el.getBoundingClientRect();
-      const x = event.clientX - rect.left;
-      const y = event.clientY - rect.top;
-      el.style.setProperty('--lens-x', `${x}px`);
-      el.style.setProperty('--lens-y', `${y}px`);
-    });
-  });
 });
 
 // No scroll shadow - header stays clean

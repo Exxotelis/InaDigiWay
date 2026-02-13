@@ -12,7 +12,7 @@
       </button>
       
       <ul class="site-header__menu site-header__menu--left">
-        <li><a href="#home" class="site-header__link">{% trans "HOME" %}</a></li>
+        <li><a href="#home" class="site-header__link site-header__link--active" aria-current="page">{% trans "HOME" %}</a></li>
         <li><a href="#about" class="site-header__link">{% trans "ABOUT" %}</a></li>
       </ul>
 
@@ -23,16 +23,7 @@
       </div>
 
       <ul class="site-header__menu site-header__menu--right">
-        <li class="has-dropdown">
-          <button class="site-header__link site-header__link--dropdown" aria-haspopup="true" aria-expanded="false" aria-controls="services-dropdown">{% trans "SERVICES" %}</button>
-          <ul id="services-dropdown" class="site-header__dropdown" role="menu" aria-label="Services list">
-            <li role="none"><a role="menuitem" href="#service-influencer-marketing" class="site-header__link">{% trans "Influencer Marketing" %}</a></li>
-            <li role="none"><a role="menuitem" href="#service-email-marketing" class="site-header__link">{% trans "Email Marketing" %}</a></li>
-            <li role="none"><a role="menuitem" href="#service-content-creation" class="site-header__link">{% trans "Content Creation" %}</a></li>
-            <li role="none"><a role="menuitem" href="#service-web-development" class="site-header__link">{% trans "Web Development" %}</a></li>
-            <li role="none"><a role="menuitem" href="#service-branding" class="site-header__link">{% trans "Branding" %}</a></li>
-          </ul>
-        </li>
+        <li><a href="#services" class="site-header__link">{% trans "SERVICES" %}</a></li>
         <li><a href="#contact" class="site-header__link">{% trans "CONTACT" %}</a></li>
       </ul>
 
@@ -58,18 +49,9 @@
 
     <div id="mobile-menu" class="site-header__mobile">
       <ul class="site-header__mobile-menu">
-        <li><a href="#home" class="site-header__link">{% trans "HOME" %}</a></li>
+        <li><a href="#home" class="site-header__link site-header__link--active" aria-current="page">{% trans "HOME" %}</a></li>
         <li><a href="#about" class="site-header__link">{% trans "ABOUT" %}</a></li>
-        <li class="mobile-has-submenu">
-          <button class="site-header__mobile-toggle" aria-expanded="false" aria-controls="mobile-services-submenu">{% trans "SERVICES" %}</button>
-          <ul id="mobile-services-submenu" class="site-header__mobile-submenu">
-            <li><a href="#service-influencer-marketing" class="site-header__link">{% trans "Influencer Marketing" %}</a></li>
-            <li><a href="#service-email-marketing" class="site-header__link">{% trans "Email Marketing" %}</a></li>
-            <li><a href="#service-content-creation" class="site-header__link">{% trans "Content Creation" %}</a></li>
-            <li><a href="#service-web-development" class="site-header__link">{% trans "Web Development" %}</a></li>
-            <li><a href="#service-branding" class="site-header__link">{% trans "Branding" %}</a></li>
-          </ul>
-        </li>
+        <li><a href="#services" class="site-header__link">{% trans "SERVICES" %}</a></li>
         <li><a href="#contact" class="site-header__link">{% trans "CONTACT" %}</a></li>
       </ul>
       <div class="site-header__lang site-header__lang--mobile">
