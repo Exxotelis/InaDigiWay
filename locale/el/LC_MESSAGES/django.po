@@ -166,7 +166,7 @@ msgid "Professional digital marketing agency offering web design, development, a
 msgstr "Επαγγελματική ψηφιακή μάρκετινγκ αγορά που προσφέρει σχεδιασμό ιστοσελίδων, ανάπτυξη και ψηφιακές λύσεις μάρκετινγκ."
 
 msgid "Digital Marketing Agency"
-msgstr "Ψηφιακή Μάρκετινγκ Αγορά"
+msgstr "Digital Marketing Agency"
 
 #: New translations for templates
 msgid "IN A DIGI WAY"
@@ -179,7 +179,7 @@ msgid "A digital agency"
 msgstr "Μια ψηφιακή εταιρεία"
 
 msgid "focused on"
-msgstr "εστιασμένη στο"
+msgstr "εστιασμένη στήν"
 
 msgid "GROWTH!"
 msgstr "ΑΝΑΠΤΥΞΗ!"

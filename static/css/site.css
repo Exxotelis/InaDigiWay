@@ -727,7 +727,7 @@ button, a, nav {
 .hero {
   position: relative;
   overflow: visible;
-  min-height: 92vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -763,12 +763,13 @@ button, a, nav {
 /* Large Vertical Decorative Text */
 .home-page .hero__mega-text {
   position: absolute;
-  top: 0;
-  height: 100%;
+  top: clamp(120px, 14vw, 190px);
+  height: calc(100% - clamp(120px, 14vw, 190px));
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1;
+  z-index: 10000;
+  pointer-events: none;
   font-weight: 900;
   letter-spacing: 8px;
   text-transform: uppercase;
@@ -793,12 +794,12 @@ button, a, nav {
 }
 
 .home-page .hero__mega-text-content {
-  font-size: clamp(2rem, 8vw, 3.5rem);
+  font-size: clamp(1.8rem, 7.2vw, 3.2rem);
   writing-mode: vertical-rl;
   text-orientation: mixed;
-  transform: rotate(180deg);
+  transform: none;
   color: transparent;
-  letter-spacing: 8px;
+  letter-spacing: 4px;
   -webkit-text-stroke: 1px white;
   text-stroke: 1px white;
   font-weight: 900;
@@ -809,12 +810,14 @@ button, a, nav {
   color: transparent;
   -webkit-text-stroke: 1px white;
   text-stroke: 1px white;
+  transform: rotate(180deg);
 }
 
 .home-page .hero__mega-text--right .hero__mega-text-content {
   color: transparent;
   -webkit-text-stroke: 1px white;
   text-stroke: 1px white;
+  transform: none;
 }
 
 .hero__content {
@@ -1144,9 +1147,10 @@ button, a, nav {
   grid-template-columns: 1fr 1fr;
   gap: 5rem;
   align-items: center;
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
+  width: 60%;
+  max-width: none;
+  margin: 0 20%;
+  padding: 2rem 0;
 }
 
 .about__image-side {
@@ -1640,6 +1644,14 @@ button, a, nav {
 .service-showcase__title {
   word-break: keep-all;
   overflow-wrap: normal;
+}
+
+/* Keep all service-section images visually consistent */
+.services-layout .service-showcase__image {
+  width: 100%;
+  height: clamp(280px, 24vw, 360px);
+  overflow: hidden;
+  border-radius: 8px;
 }
 
 /* Ensure service images fill their container */
@@ -2881,16 +2893,6 @@ button, a, nav {
     padding: 0;
   }
 
-  .hero__mega-text,
-  .home-page .hero__mega-text {
-    display: none !important;
-  }
-
-  .services-layout__mega-text,
-  .home-page .services-layout__mega-text {
-    display: none !important;
-  }
-
   .services-layout {
     padding: 2rem 0 2.5rem;
   }
@@ -2922,8 +2924,9 @@ button, a, nav {
   }
 
   .about__content {
+    width: 60%;
     max-width: none;
-    margin: 0 10%;
+    margin: 0 20%;
     padding: 1.2rem 0;
     gap: 1.6rem;
   }
