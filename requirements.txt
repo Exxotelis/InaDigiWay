@@ -1,4 +1,5 @@
-Django>=4.2,<5.0
+Django>=5.2,<5.3
 gunicorn
-whitenoise
+whitenoise>=6.9.0
 Pillow>=10.0.0
+polib>=1.2.0
