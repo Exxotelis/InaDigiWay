@@ -365,7 +365,7 @@ button, a, nav {
   font-weight: 600;
   text-transform: uppercase;
   color: var(--color-dark-gray);
-  transition: opacity 0.3s ease;
+  transition: color 0.3s ease, opacity 0.3s ease;
   padding: 0;
 }
 
@@ -389,7 +389,8 @@ button, a, nav {
 }
 
 .site-header__link:hover {
-  opacity: 0.7;
+  color: var(--color-pink);
+  opacity: 1;
 }
 
 /* Header dropdown (desktop) */
@@ -3043,9 +3044,13 @@ button, a, nav {
   .contact__submit-btn,
   .service-showcase__btn--primary,
   .service-card__btn--primary,
-  .quote-modal .service-showcase__btn--primary
+  .quote-modal .service-showcase__btn--primary,
+  .service-showcase__btn--secondary,
+  .service-card__btn--secondary
 ):hover {
-  background-color: var(--color-teal) !important;
+  background-color: var(--color-pink) !important;
+  border-color: var(--color-pink) !important;
+  color: var(--color-white) !important;
   transform: translateY(-2px);
 }
 
@@ -3108,4 +3113,348 @@ button, a, nav {
 /* Slightly reduce scale for buttons to avoid overlap */
 .service-showcase__btn .letter-hover__char:hover {
   /* no zoom effect */
+}
+
+/* ========================================
+   LAYOUT FIXES (LOGO / HERO SERVICE / STICKY CTA)
+   ======================================== */
+
+/* Keep header/logo flush to viewport top on all screens */
+.site-header,
+.site-header__nav {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.site-header__container {
+  padding-top: 0 !important;
+}
+
+.site-header__logo-img {
+  transform: none !important;
+  margin-top: 0 !important;
+  display: block;
+}
+
+/* Hero section must connect cleanly with the rest of the page */
+.hero {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Make hero service card match services section spacing and proportions */
+.hero__service-preview,
+.hero__service-preview--hero {
+  grid-template-columns: 1.2fr 1fr !important;
+  gap: var(--spacing-lg) !important;
+  padding: var(--spacing-lg) !important;
+}
+
+.hero__service-preview--hero {
+  width: 60% !important;
+  margin: var(--spacing-lg) 20% 0 !important;
+}
+
+.hero__service-preview--hero .service-showcase__image,
+.services-layout .service-showcase__image {
+  height: clamp(280px, 24vw, 360px) !important;
+}
+
+.hero__service-preview--hero .service-showcase__image {
+  max-width: none !important;
+}
+
+.hero__service-preview--hero .service-showcase__content {
+  max-width: none !important;
+}
+
+/* Extra consistent breathing room inside all service boxes */
+.services-layout .service-showcase {
+  padding: var(--spacing-lg) !important;
+}
+
+/* Reverse sticky CTA corner direction: square back, round front */
+.home-page .sticky-cta__btn {
+  border-radius: 0 8px 8px 0 !important;
+}
+
+@media (max-width: 1024px) {
+  .hero__service-preview,
+  .hero__service-preview--hero {
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    margin: var(--spacing-lg) 0 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .site-header__container {
+    padding-top: 0 !important;
+    padding-bottom: var(--spacing-sm) !important;
+  }
+
+  .hero__content {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .hero__service-preview,
+  .hero__service-preview--hero {
+    padding: var(--spacing-md) !important;
+  }
+
+  .hero__service-preview--hero .service-showcase__image,
+  .services-layout .service-showcase__image {
+    height: clamp(220px, 58vw, 320px) !important;
+  }
+}
+
+/* ========================================
+   SPACING TUNING (HERO / SERVICES / CONTACT LOGOS)
+   ======================================== */
+
+/* Image 1: reduce the empty space under hero service */
+.hero {
+  min-height: auto !important;
+  padding-bottom: var(--spacing-lg) !important;
+}
+
+.hero__content {
+  gap: var(--spacing-xl) !important;
+}
+
+/* Images 2 & 3: tighten service rows and remove large end-gap */
+.services-layout {
+  padding-top: 0 !important;
+  padding-bottom: var(--spacing-xl) !important;
+}
+
+.services-layout__container {
+  margin-bottom: var(--spacing-xl) !important;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.services-layout__container .service-showcase {
+  margin: 0 !important;
+}
+
+/* Image 4: make logos spacing from wrapper border feel like the form side */
+.contact__clients-box {
+  padding-top: 0 !important;
+}
+
+.contact__clients-title {
+  margin-bottom: 0.8rem !important;
+}
+
+.contact__clients-grid {
+  padding-top: 0 !important;
+  align-content: start !important;
+  gap: 1rem !important;
+}
+
+@media (max-width: 768px) {
+  .services-layout__container {
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg) !important;
+  }
+
+  .contact__clients-grid {
+    gap: var(--spacing-sm) !important;
+  }
+}
+
+/* ========================================
+   HEADER + MOBILE RECOVERY TUNING
+   ======================================== */
+
+/* Desktop: center logo cleanly and give links more breathing room */
+@media (min-width: 769px) {
+  .site-header__container {
+    justify-content: center;
+    gap: 2.8rem;
+  }
+
+  .site-header__menu {
+    gap: 1.8rem;
+  }
+
+  .site-header__link {
+    letter-spacing: 0.02em;
+  }
+}
+
+/* Mobile: remove white top gap and tighten image/content spacing */
+@media (max-width: 768px) {
+  .site-header {
+    background: linear-gradient(
+      90deg,
+      var(--color-aqua) 0%,
+      var(--color-aqua) 20%,
+      var(--color-lime) 20%,
+      var(--color-lime) 80%,
+      var(--color-aqua) 80%,
+      var(--color-aqua) 100%
+    ) !important;
+  }
+
+  .site-header__container {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  .hero {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .hero__service-preview,
+  .hero__service-preview--hero,
+  .service-showcase {
+    gap: 0.45rem !important;
+  }
+
+  .hero__service-preview,
+  .hero__service-preview--hero {
+    padding: 0.5rem !important;
+  }
+
+  .service-showcase__image {
+    margin: 0 auto 0.35rem auto !important;
+  }
+
+  .service-showcase__content {
+    padding: 0.2rem 0 !important;
+  }
+
+  .service-showcase__btn {
+    margin-top: 0.7rem !important;
+  }
+}
+
+/* ========================================
+   FINAL HEADER/HERO SPACING CORRECTIONS
+   ======================================== */
+
+@media (min-width: 769px) {
+  /* Desktop: keep a small clean gap between logo/header and hero title */
+  .hero__content {
+    margin-top: 1.15rem !important;
+    padding-top: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Mobile: keep logo fully visible and centered, with no white strip on top */
+  .site-header,
+  .site-header__nav {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .site-header__container {
+    min-height: 84px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .site-header__logo {
+    top: 0 !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .site-header__logo-img {
+    height: 74px !important;
+    max-width: 104px !important;
+    margin-top: 0 !important;
+  }
+
+  /* Add breathing room between logo and heading */
+  .hero__content {
+    margin-top: 0.95rem !important;
+    padding-top: 0 !important;
+  }
+
+  /* Reduce hero -> services gap */
+  .hero {
+    padding-bottom: 0 !important;
+  }
+
+  .hero__service-preview--hero {
+    margin-bottom: 0 !important;
+  }
+
+  .services-layout {
+    padding-top: 0 !important;
+  }
+
+  .services-layout__container {
+    margin-top: 0 !important;
+    gap: 0.6rem !important;
+  }
+
+  /* Remove fake empty space caused by fixed image container heights on mobile */
+  .hero__service-preview--hero .service-showcase__image,
+  .services-layout .service-showcase__image {
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  .hero__service-preview--hero .service-showcase__img,
+  .services-layout .service-showcase__img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    display: block;
+  }
+}
+
+/* ========================================
+   DESKTOP FINAL ALIGNMENT (HERO + SERVICES)
+   ======================================== */
+
+@media (min-width: 769px) {
+  /* More breathing room between logo/header and hero heading */
+  .hero__content {
+    margin-top: 2.35rem !important;
+  }
+
+  /* Match service-section horizontal rhythm to hero service card */
+  .services-layout__container {
+    width: 60% !important;
+    margin: 0 20% var(--spacing-xl) !important;
+  }
+
+  .services-layout .service-showcase {
+    padding: var(--spacing-lg) !important;
+    gap: var(--spacing-lg) !important;
+  }
+
+  .services-layout .service-showcase__content {
+    padding: 0 !important;
+  }
+
+  .services-layout .service-showcase__image {
+    margin: 0 !important;
+  }
+}
+
+/* ========================================
+   DESKTOP ONLY USER TUNING
+   ======================================== */
+@media (min-width: 769px) {
+  .hero__title {
+    margin-top: 50px !important;
+  }
+
+  .hero__service-preview.service-showcase.service-showcase--left.hero__service-preview--hero {
+    margin-top: 150px !important;
+  }
+
+  .services-layout__container {
+    padding-left: 45px !important;
+    padding-right: 45px !important;
+  }
 }
