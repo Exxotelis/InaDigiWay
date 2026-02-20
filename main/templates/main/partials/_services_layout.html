@@ -1,89 +1,57 @@
 {# Services Section with Alternating Layout #}
 {% load i18n %}
 {% load static %}
+{% load content_tags %}
 <section class="services-layout" id="services" role="region" aria-label="Services showcase">
   
   <!-- Large Vertical Text (Left) -->
   <div class="services-layout__mega-text services-layout__mega-text--left">
-    <span class="services-layout__mega-text-content">{% trans "IDEAS THAT CONVERT!" %}</span>
+    <span class="services-layout__mega-text-content">{{ services_content|in_current_lang:"mega_text" }}</span>
   </div>
   
   <!-- Large Vertical Text (Right) -->
   <div class="services-layout__mega-text services-layout__mega-text--right">
-    <span class="services-layout__mega-text-content">{% trans "IDEAS THAT CONVERT!" %}</span>
+    <span class="services-layout__mega-text-content">{{ services_content|in_current_lang:"mega_text" }}</span>
   </div>
   
   <div class="services-layout__container">
     
-    <!-- Service 1: Influencer Marketing -->
-    <article id="service-influencer-marketing" class="service-showcase service-showcase--right">
-      <div class="service-showcase__content">
-        <h3 class="service-showcase__title">{% trans "INFLUENCER MARKETING" %}</h3>
-        <p class="service-showcase__description">{% trans "Connect with the right influencers to amplify your message & reach new audiences authentically." %}</p>
-        <div class="service-showcase__actions">
-          <a href="#quote" data-open-quote class="service-showcase__btn service-showcase__btn--primary">{% trans "GET A QUOTE" %}</a>
+    {% for service in services %}
+    <!-- Service {{ forloop.counter }}: {{ service|in_current_lang:"title" }} -->
+    <article id="service-{{ service.id }}" class="service-showcase service-showcase--{{ service.layout }}">
+      {% if service.layout == 'left' %}
+        <div class="service-showcase__image">
+          {% if service.image %}
+            <img src="{{ service.image.url }}" alt="{{ service|in_current_lang:"title" }}" class="service-showcase__img">
+          {% else %}
+            <img src="{% static 'images/demo-images/demo-digital-agency.jpg' %}" alt="{{ service|in_current_lang:"title" }}" class="service-showcase__img">
+          {% endif %}
         </div>
-      </div>
-      <div class="service-showcase__image">
-        <img src="{% static 'images/services/influencer-marketing.jpg' %}" alt="Influencer Marketing" class="service-showcase__img">
-      </div>
-    </article>
-    
-    <!-- Service 2: Email Marketing -->
-    <article id="service-email-marketing" class="service-showcase service-showcase--left">
-      <div class="service-showcase__image">
-        <img src="{% static 'images/services/email-marketing.jpg' %}" alt="Email Marketing" class="service-showcase__img">
-      </div>
-      <div class="service-showcase__content">
-        <h3 class="service-showcase__title">{% trans "EMAIL MARKETING" %}</h3>
-        <p class="service-showcase__description">{% trans "Build lasting relationships with targeted email campaigns that convert subscribers into loyal customers." %}</p>
-        <div class="service-showcase__actions">
-          <a href="#quote" data-open-quote class="service-showcase__btn service-showcase__btn--primary">{% trans "GET A QUOTE" %}</a>
+        <div class="service-showcase__content">
+          <h3 class="service-showcase__title">{{ service|in_current_lang:"title" }}</h3>
+          <p class="service-showcase__description">{{ service|in_current_lang:"description" }}</p>
+          <div class="service-showcase__actions">
+            <a href="{{ service.button_link }}" {% if service.button_link == '#quote' %}data-open-quote{% endif %} class="service-showcase__btn service-showcase__btn--primary">{{ service|in_current_lang:"button_text" }}</a>
+          </div>
         </div>
-      </div>
-    </article>
-
-    <!-- Service 3: Content Creation & Marketing -->
-    <article id="service-content-creation" class="service-showcase service-showcase--right">
-      <div class="service-showcase__content">
-        <h3 class="service-showcase__title">{% trans "CONTENT CREATION & MARKETING" %}</h3>
-        <p class="service-showcase__description">{% trans "Compelling stories, stunning visuals & engaging copy that captivate your audience and drive results." %}</p>
-        <div class="service-showcase__actions">
-          <a href="#quote" data-open-quote class="service-showcase__btn service-showcase__btn--primary">{% trans "GET A QUOTE" %}</a>
+      {% else %}
+        <div class="service-showcase__content">
+          <h3 class="service-showcase__title">{{ service|in_current_lang:"title" }}</h3>
+          <p class="service-showcase__description">{{ service|in_current_lang:"description" }}</p>
+          <div class="service-showcase__actions">
+            <a href="{{ service.button_link }}" {% if service.button_link == '#quote' %}data-open-quote{% endif %} class="service-showcase__btn service-showcase__btn--primary">{{ service|in_current_lang:"button_text" }}</a>
+          </div>
         </div>
-      </div>
-      <div class="service-showcase__image">
-        <img src="{% static 'images/services/content-creation.jpg' %}" alt="Content Creation & Marketing" class="service-showcase__img">
-      </div>
-    </article>
-
-    <!-- Service 4: Web Development -->
-    <article id="service-web-development" class="service-showcase service-showcase--left">
-      <div class="service-showcase__image">
-        <img src="{% static 'images/services/web-development.jpg' %}" alt="Web Development" class="service-showcase__img">
-      </div>
-      <div class="service-showcase__content">
-        <h3 class="service-showcase__title">{% trans "WEB DEVELOPMENT" %}</h3>
-        <p class="service-showcase__description">{% trans "Custom-built websites & web apps that are fast, secure, and designed for conversions." %}</p>
-        <div class="service-showcase__actions">
-          <a href="#book-call" class="service-showcase__btn service-showcase__btn--primary">{% trans "BOOK A CALL TODAY" %}</a>
+        <div class="service-showcase__image">
+          {% if service.image %}
+            <img src="{{ service.image.url }}" alt="{{ service|in_current_lang:"title" }}" class="service-showcase__img">
+          {% else %}
+            <img src="{% static 'images/demo-images/demo-digital-agency.jpg' %}" alt="{{ service|in_current_lang:"title" }}" class="service-showcase__img">
+          {% endif %}
         </div>
-      </div>
+      {% endif %}
     </article>
-
-    <!-- Service 5: Branding -->
-    <article id="service-branding" class="service-showcase service-showcase--right">
-      <div class="service-showcase__content">
-        <h3 class="service-showcase__title">{% trans "BRANDING" %}</h3>
-        <p class="service-showcase__description">{% trans "Build a memorable brand identity that connects with your audience and stands out from the crowd." %}</p>
-        <div class="service-showcase__actions">
-          <a href="#book-call" class="service-showcase__btn service-showcase__btn--primary">{% trans "BOOK A CALL TODAY" %}</a>
-        </div>
-      </div>
-      <div class="service-showcase__image">
-        <img src="{% static 'images/demo-images/demo-digital-agency.jpg' %}" alt="Branding" class="service-showcase__img">
-      </div>
-    </article>
+    {% endfor %}
 
   </div>
 </section>
