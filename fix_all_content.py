@@ -105,16 +105,16 @@ def fix_all_content():
     # Fix About
     about, _ = AboutContent.objects.get_or_create(pk=1)
     about.main_image = 'InaDigi.jpg'
-    about.badge_image_1 = 'about/41.png'
-    about.badge_image_2 = 'about/74.png'
-    about.badge_image_3 = 'about/35.png'
+    about.badge_top_left = 'about/badges/41.png'
+    about.badge_bottom_left = 'about/badges/74.png'
+    about.badge_bottom_right = 'about/badges/35.png'
     about.save()
     print("✅ About images fixed")
     
     # Fix Footer
     footer, _ = FooterContent.objects.get_or_create(pk=1)
-    footer.logo = 'ina-digi-way-margarita-pagouni-62.png'
-    footer.qr_code = 'InaQR.png'
+    footer.logo_image = 'ina-digi-way-margarita-pagouni-62.png'
+    footer.qr_code_image = 'InaQR.png'
     footer.save()
     print("✅ Footer images fixed")
     
