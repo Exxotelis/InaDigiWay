@@ -162,6 +162,179 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  // Fancy hover wave for key text blocks (lightweight)
+  const waveTargets = document.querySelectorAll(
+    '.service-showcase__title, .about__title, .happy-clients__title, .contact__title'
+  );
+
+  waveTargets.forEach((el) => {
+    if (el.dataset.waveReady === '1') return;
+    if (!el.firstChild || el.childNodes.length !== 1 || el.firstChild.nodeType !== Node.TEXT_NODE) return;
+
+    const text = el.textContent || '';
+    if (!text.trim()) return;
+
+    const frag = document.createDocumentFragment();
+    const wrapper = document.createElement('span');
+    wrapper.className = 'text-wave';
+
+    const words = text.trim().split(/\s+/);
+    let charIndex = 0;
+
+    words.forEach((word, wordIdx) => {
+      const wordSpan = document.createElement('span');
+      wordSpan.className = 'text-wave__word';
+
+      Array.from(word).forEach((ch) => {
+        const charSpan = document.createElement('span');
+        charSpan.className = 'text-wave__char';
+        charSpan.style.setProperty('--char-index', String(charIndex));
+        charSpan.textContent = ch;
+        wordSpan.appendChild(charSpan);
+        charIndex += 1;
+      });
+
+      wrapper.appendChild(wordSpan);
+      if (wordIdx < words.length - 1) {
+        wrapper.appendChild(document.createTextNode(' '));
+        charIndex += 1;
+      }
+    });
+
+    frag.appendChild(wrapper);
+    el.textContent = '';
+    el.appendChild(frag);
+    el.dataset.waveReady = '1';
+
+    el.addEventListener('mouseenter', () => {
+      wrapper.classList.remove('is-wave');
+      // Force reflow so animation can replay on every hover
+      void wrapper.offsetWidth;
+      wrapper.classList.add('is-wave');
+    });
+  });
+
+  // Fancy paragraph hover glow (lightweight)
+  const paragraphFxTargets = document.querySelectorAll(
+    '.service-showcase__description, .about__text, .hero__service-preview--hero .service-showcase__description'
+  );
+
+  paragraphFxTargets.forEach((el) => {
+    el.classList.add('text-paragraph-fx');
+
+    el.addEventListener('pointermove', (event) => {
+      const rect = el.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      const x = ((event.clientX - rect.left) / rect.width) * 100;
+      const y = ((event.clientY - rect.top) / rect.height) * 100;
+      el.style.setProperty('--fx-x', `${Math.max(0, Math.min(100, x))}%`);
+      el.style.setProperty('--fx-y', `${Math.max(0, Math.min(100, y))}%`);
+    }, { passive: true });
+
+    el.addEventListener('pointerleave', () => {
+      el.style.setProperty('--fx-x', '50%');
+      el.style.setProperty('--fx-y', '50%');
+    }, { passive: true });
+  });
+
+  // Hero title per-letter cinematic ripple (preserves line breaks)
+  function applyHeroLetterFx(target) {
+    if (!target || target.dataset.heroFxReady === '1') return;
+
+    let charIndex = 0;
+    const transformNode = (node) => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        const text = node.textContent || '';
+        const fragment = document.createDocumentFragment();
+        const parts = text.split(/(\s+)/);
+
+        parts.forEach((part) => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) {
+            fragment.appendChild(document.createTextNode(part));
+            return;
+          }
+
+          const wordSpan = document.createElement('span');
+          wordSpan.className = 'hero-title-fx__word';
+
+          Array.from(part).forEach((ch) => {
+            const charSpan = document.createElement('span');
+            charSpan.className = 'hero-title-fx__char';
+            charSpan.style.setProperty('--char-index', String(charIndex));
+            charSpan.textContent = ch;
+            wordSpan.appendChild(charSpan);
+            charIndex += 1;
+          });
+
+          fragment.appendChild(wordSpan);
+        });
+
+        return fragment;
+      }
+
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        const el = node;
+        if (el.tagName === 'BR') return el.cloneNode(true);
+        const clone = el.cloneNode(false);
+        Array.from(el.childNodes).forEach((child) => {
+          const transformed = transformNode(child);
+          if (transformed) clone.appendChild(transformed);
+        });
+        return clone;
+      }
+
+      return null;
+    }
+
+    const fragment = document.createDocumentFragment();
+    Array.from(target.childNodes).forEach((child) => {
+      const transformed = transformNode(child);
+      if (transformed) fragment.appendChild(transformed);
+    });
+
+    target.textContent = '';
+    target.appendChild(fragment);
+    target.classList.add('hero-title-fx');
+    target.dataset.heroFxReady = '1';
+
+    const replay = () => {
+      target.classList.remove('is-letter-play');
+      void target.offsetWidth;
+      target.classList.add('is-letter-play');
+    };
+
+    target.addEventListener('mouseenter', replay);
+    target.addEventListener('focus', replay);
+  }
+
+  applyHeroLetterFx(document.querySelector('.home-page .hero__title-normal'));
+  applyHeroLetterFx(document.querySelector('.home-page .hero__title-highlight'));
+
+  // Services reveal on scroll (lightweight)
+  const serviceCards = document.querySelectorAll('.services-layout .service-showcase');
+  if (serviceCards.length) {
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('service-showcase--in-view');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -4% 0px'
+      });
+
+      serviceCards.forEach((card) => {
+        card.classList.add('service-showcase--reveal');
+        observer.observe(card);
+      });
+    } else {
+      serviceCards.forEach((card) => card.classList.add('service-showcase--in-view'));
+    }
+  }
 
 });
 

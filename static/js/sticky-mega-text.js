@@ -2,65 +2,99 @@ document.addEventListener('DOMContentLoaded', function() {
   const megaTextLeft = document.querySelector('.services-layout__mega-text--left');
   const megaTextRight = document.querySelector('.services-layout__mega-text--right');
   const servicesLayout = document.querySelector('.services-layout');
+  const footer = document.querySelector('.site-footer');
   const contact = document.querySelector('.contact');
-
   if (!megaTextLeft || !megaTextRight || !servicesLayout || !contact) return;
 
-  function updateMegaTextPosition() {
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
-    const scrollY = window.scrollY;
+  const STICKY_LINE_LEFT = '10%';
+  const STICKY_LINE_RIGHT = '10%';
+  const TOP_OFFSET = 130;
+  const BOTTOM_OFFSET = 130;
 
-    // Get services layout bounds
+  function applyTopAbsolute() {
+    megaTextLeft.style.position = 'absolute';
+    megaTextLeft.style.left = '10%';
+    megaTextLeft.style.right = 'auto';
+    megaTextLeft.style.top = TOP_OFFSET + 'px';
+    megaTextLeft.style.transform = 'translateX(-50%)';
+
+    megaTextRight.style.position = 'absolute';
+    megaTextRight.style.right = '10%';
+    megaTextRight.style.left = 'auto';
+    megaTextRight.style.top = TOP_OFFSET + 'px';
+    megaTextRight.style.transform = 'translateX(50%)';
+  }
+
+  function applySticky() {
+    megaTextLeft.style.position = 'fixed';
+    megaTextLeft.style.left = STICKY_LINE_LEFT;
+    megaTextLeft.style.right = 'auto';
+    megaTextLeft.style.top = '50%';
+    megaTextLeft.style.transform = 'translate(-50%, -50%)';
+
+    megaTextRight.style.position = 'fixed';
+    megaTextRight.style.right = STICKY_LINE_RIGHT;
+    megaTextRight.style.left = 'auto';
+    megaTextRight.style.top = '50%';
+    megaTextRight.style.transform = 'translate(50%, -50%)';
+  }
+
+  function applyBottomAbsolute(bottomTop) {
+    megaTextLeft.style.position = 'absolute';
+    megaTextLeft.style.left = '10%';
+    megaTextLeft.style.right = 'auto';
+    megaTextLeft.style.top = bottomTop + 'px';
+    megaTextLeft.style.transform = 'translateX(-50%)';
+
+    megaTextRight.style.position = 'absolute';
+    megaTextRight.style.right = '10%';
+    megaTextRight.style.left = 'auto';
+    megaTextRight.style.top = bottomTop + 'px';
+    megaTextRight.style.transform = 'translateX(50%)';
+  }
+
+  function updateMegaTextPosition() {
+    if (window.innerWidth <= 768) {
+      megaTextLeft.style.position = '';
+      megaTextLeft.style.left = '';
+      megaTextLeft.style.right = '';
+      megaTextLeft.style.top = '';
+      megaTextLeft.style.transform = '';
+
+      megaTextRight.style.position = '';
+      megaTextRight.style.left = '';
+      megaTextRight.style.right = '';
+      megaTextRight.style.top = '';
+      megaTextRight.style.transform = '';
+      return;
+    }
+
+    const scrollY = window.scrollY;
     const servicesRect = servicesLayout.getBoundingClientRect();
     const servicesTop = scrollY + servicesRect.top;
 
-    // Get contact section bounds
     const contactRect = contact.getBoundingClientRect();
     const contactTop = scrollY + contactRect.top;
-    const contactHeight = contact.offsetHeight;
-    
-    // Start showing text 150px below services top
-    const startPoint = servicesTop + 150;
-    const stopPoint = contactTop - 150; // Stop in middle of contact section
+    const footerTop = footer ? scrollY + footer.getBoundingClientRect().top : contactTop;
 
-    // Check if we're in the visible range
-    const isInRange = scrollY >= startPoint && scrollY <= stopPoint;
+    const stickyStart = servicesTop + TOP_OFFSET;
+    const stickyEnd = Math.min(footerTop - BOTTOM_OFFSET, contactTop - BOTTOM_OFFSET);
 
-    if (isInRange) {
-      // Position text fixed in center of viewport, at 7.5% boundaries
-      megaTextLeft.style.position = 'fixed';
-      megaTextLeft.style.left = (viewportWidth * 0.075) + 'px';
-      megaTextLeft.style.top = (viewportHeight / 2) + 'px';
-      megaTextLeft.style.transform = 'translateY(-50%)';
-
-      megaTextRight.style.position = 'fixed';
-      megaTextRight.style.right = (viewportWidth * 0.075) + 'px';
-      megaTextRight.style.left = 'auto';
-      megaTextRight.style.top = (viewportHeight / 2) + 'px';
-      megaTextRight.style.transform = 'translateY(-50%)';
-    } else {
-      // Reset to absolute positioning at 150px when not in scroll range
-      megaTextLeft.style.position = 'absolute';
-      megaTextLeft.style.left = '7.5%';
-      megaTextLeft.style.right = 'auto';
-      megaTextLeft.style.top = '150px';
-      megaTextLeft.style.transform = 'none';
-
-      megaTextRight.style.position = 'absolute';
-      megaTextRight.style.right = '7.5%';
-      megaTextRight.style.left = 'auto';
-      megaTextRight.style.top = '150px';
-      megaTextRight.style.transform = 'none';
+    if (scrollY < stickyStart) {
+      applyTopAbsolute();
+      return;
     }
+
+    if (scrollY <= stickyEnd) {
+      applySticky();
+      return;
+    }
+
+    const frozenTopInsideServices = stickyEnd - servicesTop;
+    applyBottomAbsolute(frozenTopInsideServices);
   }
 
-  // Update on scroll
   window.addEventListener('scroll', updateMegaTextPosition, { passive: true });
-  
-  // Update on resize
   window.addEventListener('resize', updateMegaTextPosition, { passive: true });
-
-  // Initial update
   updateMegaTextPosition();
 });
