@@ -17,21 +17,32 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+def _split_csv_env(name: str, default: str = "") -> list[str]:
+    value = os.getenv(name, default)
+    return [item.strip() for item in value.split(",") if item.strip()]
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ic!$k2v*6xdjoyn!xu^md12&7-%qy_egr&sda(zfuc6)z9i+s3'
+SECRET_KEY = os.getenv(
+    'DJANGO_SECRET_KEY',
+    'django-insecure-ic!$k2v*6xdjoyn!xu^md12&7-%qy_egr&sda(zfuc6)z9i+s3'
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = os.getenv('DJANGO_DEBUG', 'False').lower() == 'true'
-DEBUG = True  # Set to False in production
+DEBUG = os.getenv('DJANGO_DEBUG', 'False').lower() == 'true'
 
-ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = [
-    'https://inadigiway.com',
-    'https://www.inadigiway.com',
-]
+ALLOWED_HOSTS = _split_csv_env(
+    'DJANGO_ALLOWED_HOSTS',
+    'inadigiway.com,www.inadigiway.com,localhost,127.0.0.1'
+)
+
+CSRF_TRUSTED_ORIGINS = _split_csv_env(
+    'DJANGO_CSRF_TRUSTED_ORIGINS',
+    'https://inadigiway.com,https://www.inadigiway.com'
+)
 
 
 # Application definition
