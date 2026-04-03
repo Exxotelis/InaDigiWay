@@ -74,8 +74,7 @@
 
 #nav-sidebar .module th {
     width: 100%;
-    overflow-wrap: normal;
-    word-break: normal;
+    overflow-wrap: anywhere;
 }
 
 #nav-sidebar .module th,
