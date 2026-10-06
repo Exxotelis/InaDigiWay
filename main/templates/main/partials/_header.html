@@ -17,7 +17,7 @@
       </ul>
 
       <div class="site-header__logo">
-        <a href="/" class="site-header__logo-link">
+        <a href="{% url 'home' %}" class="site-header__logo-link">
           <img src="{% static 'images/logo.png' %}" alt="In A Digi Way" class="site-header__logo-img">
         </a>
       </div>
@@ -28,22 +28,17 @@
       </ul>
 
       <div class="site-header__lang site-header__lang--desktop">
-        <form method="post" action="{% url 'set_language' %}" class="lang-switch">
-          {% csrf_token %}
+        <div class="lang-switch">
           {% if LANGUAGE_CODE == 'el' %}
-            <input type="hidden" name="next" value="{{ request.path }}">
-            <input type="hidden" name="language" value="en">
-            <button type="submit" class="lang-switch__btn" aria-label="English">
+            <a href="{% language 'en' %}{% url 'home' %}{% endlanguage %}" hreflang="en" lang="en" class="lang-switch__btn" aria-label="English">
               <img src="{% static 'images/flags/en.png' %}" alt="English" class="lang-switch__flag">
-            </button>
+            </a>
           {% else %}
-            <input type="hidden" name="next" value="{{ request.path }}">
-            <input type="hidden" name="language" value="el">
-            <button type="submit" class="lang-switch__btn" aria-label="Ελληνικά">
+            <a href="{% language 'el' %}{% url 'home' %}{% endlanguage %}" hreflang="el" lang="el" class="lang-switch__btn" aria-label="Ελληνικά">
               <img src="{% static 'images/flags/el.png' %}" alt="Ελληνικά" class="lang-switch__flag">
-            </button>
+            </a>
           {% endif %}
-        </form>
+        </div>
       </div>
     </div>
 
@@ -55,22 +50,17 @@
         <li><a href="#contact" class="site-header__link">{% trans "CONTACT" %}</a></li>
       </ul>
       <div class="site-header__lang site-header__lang--mobile">
-        <form method="post" action="{% url 'set_language' %}" class="lang-switch">
-          {% csrf_token %}
+        <div class="lang-switch">
           {% if LANGUAGE_CODE == 'el' %}
-            <input type="hidden" name="next" value="{{ request.path }}">
-            <input type="hidden" name="language" value="en">
-            <button type="submit" class="lang-switch__btn" aria-label="English">
+            <a href="{% language 'en' %}{% url 'home' %}{% endlanguage %}" hreflang="en" lang="en" class="lang-switch__btn" aria-label="English">
               <img src="{% static 'images/flags/en.png' %}" alt="English" class="lang-switch__flag">
-            </button>
+            </a>
           {% else %}
-            <input type="hidden" name="next" value="{{ request.path }}">
-            <input type="hidden" name="language" value="el">
-            <button type="submit" class="lang-switch__btn" aria-label="Ελληνικά">
+            <a href="{% language 'el' %}{% url 'home' %}{% endlanguage %}" hreflang="el" lang="el" class="lang-switch__btn" aria-label="Ελληνικά">
               <img src="{% static 'images/flags/el.png' %}" alt="Ελληνικά" class="lang-switch__flag">
-            </button>
+            </a>
           {% endif %}
-        </form>
+        </div>
       </div>
     </div>
   </nav>

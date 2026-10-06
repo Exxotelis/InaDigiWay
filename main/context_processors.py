@@ -1,8 +1,18 @@
 from .models import (
-	SiteSettings, AnalyticsSettings, Testimonial,
-	HeroContent, Service, ServicesContent, AboutContent, ContactContent,
-	HappyClientsContent, FooterContent, ClientLogo
+    SiteSettings, AnalyticsSettings, Testimonial,
+    HeroContent, Service, ServicesContent, AboutContent, ContactContent,
+    HappyClientsContent, FooterContent, ClientLogo
 )
+
+
+# Countries that use GBP (UK + Crown Dependencies); everyone else sees EUR.
+GBP_COUNTRIES = {"GB", "GG", "JE", "IM"}
+
+
+def budget_currency(request):
+    """Currency symbol for the contact form budget, from Cloudflare's CF-IPCountry header."""
+    country = request.META.get("HTTP_CF_IPCOUNTRY", "").upper()
+    return "£" if country in GBP_COUNTRIES else "€"
 
 
 def site_settings(request):
@@ -34,4 +44,5 @@ def site_settings(request):
         "happy_clients_content": happy_clients_content,
         "footer": footer,
         "client_logos": client_logos,
+        "budget_currency": budget_currency(request),
     }

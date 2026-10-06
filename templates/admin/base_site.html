@@ -1,0 +1,56 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | InaDigiWay{% endblock %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+  <style>
+    @font-face {
+      font-family: 'Geologica';
+      src: url("{% static 'fonts/Geologica-VariableFont_CRSV,SHRP,slnt,wght.ttf' %}") format('truetype');
+      font-weight: 100 900;
+    }
+    :root,
+    html[data-theme="light"],
+    html[data-theme="dark"] {
+      --font-family-primary: 'Geologica', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --primary: #FA01A2;
+      --secondary: #000000;
+      --accent: #D5FF41;
+      --primary-fg: #FFFFFF;
+      --header-bg: #000000;
+      --header-color: #7AE1E1;
+      --header-branding-color: #FFFFFF;
+      --header-link-color: #FFFFFF;
+      --breadcrumbs-bg: #206F65;
+      --breadcrumbs-fg: #D8F6F6;
+      --breadcrumbs-link-fg: #FFFFFF;
+      --button-bg: #FA01A2;
+      --button-hover-bg: #C80182;
+      --default-button-bg: #000000;
+      --default-button-hover-bg: #FA01A2;
+      --object-tools-bg: #000000;
+      --object-tools-hover-bg: #FA01A2;
+    }
+    #header { border-bottom: 3px solid #FA01A2; }
+    #site-name a { display: inline-flex; align-items: center; gap: 12px; font-weight: 700; letter-spacing: .01em; }
+    #site-name img { height: 36px; width: auto; border-radius: 6px; }
+    .module h2, .module caption, .inline-group h2 { background: #000000; color: #7AE1E1; }
+  </style>
+{% endblock %}
+
+{% block branding %}
+  <div id="site-name">
+    <a href="{% url 'admin:index' %}">
+      <img src="{% static 'images/logo.png' %}" alt="">
+      <span>InaDigiWay Admin</span>
+    </a>
+  </div>
+  {% if user.is_anonymous %}
+    {% include "admin/color_theme_toggle.html" %}
+  {% endif %}
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

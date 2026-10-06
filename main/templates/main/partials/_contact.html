@@ -33,12 +33,14 @@
               <label for="contact-service" class="contact__label">{{ contact_content|in_current_lang:"label_service" }}</label>
               <select id="contact-service" name="service" class="contact__select">
                 <option value="">{{ contact_content|in_current_lang:"service_select" }}</option>
-                <option value="web-design">{% trans "Web Design" %}</option>
-                <option value="web-development">{% trans "Web Development" %}</option>
-                <option value="mobile-app">{% trans "Mobile App" %}</option>
-                <option value="branding">{% trans "Branding" %}</option>
-                <option value="social-media">{% trans "Social Media Marketing" %}</option>
-                <option value="other">{% trans "Other" %}</option>
+                {# Built from the hero service + active Services in admin, so it always matches what the site offers. The value (sent in the email) is always the English name. #}
+                {% if hero.service_title_en %}
+                <option value="{{ hero.service_title_en|title }}">{{ hero|in_current_lang:"service_title" }}</option>
+                {% endif %}
+                {% for service in services %}
+                <option value="{{ service.title_en|title }}">{{ service|in_current_lang:"title" }}</option>
+                {% endfor %}
+                <option value="Other">{% trans "Other" %}</option>
               </select>
             </div>
 
@@ -46,10 +48,10 @@
               <label for="contact-budget" class="contact__label">{{ contact_content|in_current_lang:"label_budget" }}</label>
               <select id="contact-budget" name="budget" class="contact__select">
                 <option value="">{{ contact_content|in_current_lang:"budget_select" }}</option>
-                <option value="0-5000">{% trans "$0 - $5,000" %}</option>
-                <option value="5000-10000">{% trans "$5,000 - $10,000" %}</option>
-                <option value="10000-25000">{% trans "$10,000 - $25,000" %}</option>
-                <option value="25000+">{% trans "$25,000+" %}</option>
+                <option value="{{ budget_currency }}0 - {{ budget_currency }}5,000">{{ budget_currency }}0 - {{ budget_currency }}5,000</option>
+                <option value="{{ budget_currency }}5,000 - {{ budget_currency }}10,000">{{ budget_currency }}5,000 - {{ budget_currency }}10,000</option>
+                <option value="{{ budget_currency }}10,000 - {{ budget_currency }}25,000">{{ budget_currency }}10,000 - {{ budget_currency }}25,000</option>
+                <option value="{{ budget_currency }}25,000+">{{ budget_currency }}25,000+</option>
               </select>
             </div>
           </div>
@@ -70,7 +72,7 @@
           {% if client_logos %}
             {% for logo in client_logos %}
               <div class="contact__client-item">
-                <img src="{{ logo.logo.url }}" alt="{{ logo.name }}" class="contact__client-logo" />
+                <img src="{{ logo.logo|webp:340 }}" width="170" height="170" loading="lazy" decoding="async" alt="{{ logo.name }}" class="contact__client-logo" />
               </div>
             {% endfor %}
           {% else %}

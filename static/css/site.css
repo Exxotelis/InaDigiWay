@@ -4,8 +4,9 @@
 
 @font-face {
   font-family: 'Geologica';
-  src: url('../fonts/Geologica-VariableFont_CRSV,SHRP,slnt,wght.ttf') format('truetype');
+  src: url('../fonts/Geologica-wght.woff2') format('woff2');
   font-weight: 100 900;
+  font-display: swap;
   font-stretch: 75% 125%;
 }
 
@@ -616,7 +617,7 @@ button, a, nav {
 
 .home-page .sticky-cta {
   position: fixed;
-  right: 10px;
+  right: 0;
   top: 50%;
   transform: translateY(-50%);
   z-index: 99;
@@ -2251,6 +2252,7 @@ button, a, nav {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  margin-top: auto; /* pin name/role to the bottom so all cards line up */
 }
 
 .testimonial-card__name {
@@ -2260,6 +2262,8 @@ button, a, nav {
 
 .testimonial-card__role {
   font-size: 0.85rem;
+  line-height: 1.5;
+  min-height: 3em; /* room for 2 lines so names stay level when a role wraps */
   color: #666;
 }
 
@@ -2450,6 +2454,19 @@ button, a, nav {
   gap: 8px;
 }
 
+.contact__select {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  /* Service + budget stacked on phones so long names are readable */
+  .contact__form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 .contact__submit-btn {
   padding: 0.95rem 2.5rem;
   background-color: var(--color-aqua);
@@ -2510,13 +2527,13 @@ button, a, nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 96px;
-  height: 96px;
+  width: 170px;
+  height: 170px;
 }
 
 .contact__client-logo {
-  width: 96px;
-  height: 96px;
+  width: 170px;
+  height: 170px;
   object-fit: contain;
   border-radius: 0;
   transition: transform 0.3s ease, filter 0.3s ease;
@@ -2618,6 +2635,12 @@ button, a, nav {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--spacing-sm);
     padding: var(--spacing-lg) 0 0 0;
+  }
+
+  .contact__client-item,
+  .contact__client-logo {
+    width: 130px;
+    height: 130px;
   }
 
   .contact__submit-btn {

@@ -22,9 +22,9 @@
       {% if service.layout == 'left' %}
         <div class="service-showcase__image">
           {% if service.image %}
-            <img src="{{ service.image.url }}" alt="{{ service|in_current_lang:"title" }}" class="service-showcase__img">
+            <img src="{{ service.image|webp:1000 }}" srcset="{{ service.image|webp_srcset:'400,1000' }}" sizes="(max-width: 768px) 40vw, 500px" loading="lazy" decoding="async" alt="{{ service|in_current_lang:"title" }}" class="service-showcase__img">
           {% else %}
-            <img src="{% static 'images/demo-images/demo-digital-agency.jpg' %}" alt="{{ service|in_current_lang:"title" }}" class="service-showcase__img">
+            <img src="{% static 'images/demo-images/demo-digital-agency.jpg' %}" loading="lazy" decoding="async" alt="{{ service|in_current_lang:"title" }}" class="service-showcase__img">
           {% endif %}
         </div>
         <div class="service-showcase__content">
@@ -44,9 +44,9 @@
         </div>
         <div class="service-showcase__image">
           {% if service.image %}
-            <img src="{{ service.image.url }}" alt="{{ service|in_current_lang:"title" }}" class="service-showcase__img">
+            <img src="{{ service.image|webp:1000 }}" srcset="{{ service.image|webp_srcset:'400,1000' }}" sizes="(max-width: 768px) 40vw, 500px" loading="lazy" decoding="async" alt="{{ service|in_current_lang:"title" }}" class="service-showcase__img">
           {% else %}
-            <img src="{% static 'images/demo-images/demo-digital-agency.jpg' %}" alt="{{ service|in_current_lang:"title" }}" class="service-showcase__img">
+            <img src="{% static 'images/demo-images/demo-digital-agency.jpg' %}" loading="lazy" decoding="async" alt="{{ service|in_current_lang:"title" }}" class="service-showcase__img">
           {% endif %}
         </div>
       {% endif %}

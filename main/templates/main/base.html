@@ -1,43 +1,75 @@
 {% load static %}
 {% load i18n %}
+{% load content_tags %}
 {% get_current_language as LANGUAGE_CODE %}
+{% language 'el' %}{% url 'home' as home_url_el %}{% endlanguage %}{% language 'en' %}{% url 'home' as home_url_en %}{% endlanguage %}
+{% if LANGUAGE_CODE == 'el' %}{% firstof home_url_el as page_path %}{% else %}{% firstof home_url_en as page_path %}{% endif %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{% trans 'Professional digital marketing agency offering web design, development, and digital marketing solutions.' %}">
-    <meta name="keywords" content="digital marketing, web design, web development, SEO, branding, social media marketing">
+    {% if LANGUAGE_CODE == 'el' %}{% firstof site_settings.meta_title_el site_settings.meta_title_en as seo_title %}{% firstof site_settings.meta_description_el site_settings.meta_description_en as seo_description %}{% else %}{% firstof site_settings.meta_title_en as seo_title %}{% firstof site_settings.meta_description_en as seo_description %}{% endif %}
+    {% if site_settings.og_image %}{% firstof site_settings.og_image.url as seo_image_path %}{% else %}{% static 'images/og-image.png' as seo_image_path %}{% endif %}
+    <meta name="description" content="{{ seo_description }}">
+    {% if site_settings.meta_keywords %}<meta name="keywords" content="{{ site_settings.meta_keywords }}">{% endif %}
     <meta name="author" content="InaDigiWay">
     <meta name="robots" content="index, follow">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="InaDigiWay - {% trans 'Digital Marketing Agency' %}">
-    <meta property="og:description" content="{% trans 'Professional digital marketing agency offering web design, development, and digital marketing solutions.' %}">
-    <meta property="og:url" content="https://inadigiway.com">
-    <meta property="og:image" content="https://inadigiway.com{% static 'images/og-image.png' %}">
-    <meta property="og:image:secure_url" content="https://inadigiway.com{% static 'images/og-image.png' %}">
+    <meta property="og:title" content="{{ seo_title }}">
+    <meta property="og:description" content="{{ seo_description }}">
+    <meta property="og:url" content="https://inadigiway.com{{ page_path }}">
+    <meta property="og:image" content="https://inadigiway.com{{ seo_image_path }}">
+    <meta property="og:image:secure_url" content="https://inadigiway.com{{ seo_image_path }}">
     <meta property="og:image:alt" content="InaDigiWay - Digital Marketing Agency">
-    <meta property="og:locale" content="{{ LANGUAGE_CODE }}">
-    <meta property="og:locale:alternate" content="en_US">
-    <meta property="og:locale:alternate" content="el_GR">
+    {% if LANGUAGE_CODE == 'el' %}<meta property="og:locale" content="el_GR">
+    <meta property="og:locale:alternate" content="en_US">{% else %}<meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="el_GR">{% endif %}
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="InaDigiWay - {% trans 'Digital Marketing Agency' %}">
-    <meta name="twitter:description" content="{% trans 'Professional digital marketing agency offering web design, development, and digital marketing solutions.' %}">
-    <meta name="twitter:image" content="https://inadigiway.com{% static 'images/og-image.png' %}">
+    <meta name="twitter:title" content="{{ seo_title }}">
+    <meta name="twitter:description" content="{{ seo_description }}">
+    <meta name="twitter:image" content="https://inadigiway.com{{ seo_image_path }}">
     <meta name="twitter:image:alt" content="InaDigiWay - Digital Marketing Agency">
-    <meta name="image" content="https://inadigiway.com{% static 'images/og-image.png' %}">
+    <meta name="image" content="https://inadigiway.com{{ seo_image_path }}">
     
-    <title>InaDigiWay - {% trans 'Digital Marketing Agency' %}</title>
-    <link rel="canonical" href="https://inadigiway.com">
+    <title>{{ seo_title }}</title>
+    <link rel="canonical" href="https://inadigiway.com{{ page_path }}">
+    <link rel="alternate" hreflang="el" href="https://inadigiway.com{{ home_url_el }}">
+    <link rel="alternate" hreflang="en" href="https://inadigiway.com{{ home_url_en }}">
+    <link rel="alternate" hreflang="x-default" href="https://inadigiway.com{{ home_url_el }}">
     <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
-    <link rel="stylesheet" href="{% static 'css/site.css' %}?v=e82c292">
+    <link rel="preload" href="{% static 'fonts/Geologica-wght.woff2' %}" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="{% static 'css/site.css' %}?v=20261006f">
     {% if ga4_measurement_id %}
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ ga4_measurement_id }}"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', '{{ ga4_measurement_id }}');
+      // Load the GA library after the page has loaded so it doesn't compete with first paint.
+      window.addEventListener('load', function () {
+        setTimeout(function () {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id={{ ga4_measurement_id }}';
+          document.head.appendChild(s);
+        }, 1500);
+      });
+    </script>
+    {% endif %}
+    {% if site_settings.adsense_enabled and site_settings.adsense_client %}
+    <meta name="google-adsense-account" content="{{ site_settings.adsense_client }}">
+    <script>
+      // Load AdSense after the page has loaded so it doesn't block first paint / interaction.
+      window.addEventListener('load', function () {
+        setTimeout(function () {
+          var s = document.createElement('script');
+          s.async = true;
+          s.crossOrigin = 'anonymous';
+          s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site_settings.adsense_client }}';
+          document.head.appendChild(s);
+        }, 2000);
+      });
     </script>
     {% endif %}
 </head>
@@ -86,26 +118,6 @@
     <script defer src="{% static 'js/site.js' %}?v=e82c292"></script>
     <script defer src="{% static 'js/sticky-mega-text.js' %}?v=e82c292"></script>
     <script defer src="{% static 'js/services-mobile-order.js' %}?v=e82c292"></script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "InaDigiWay",
-      "url": "https://inadigiway.com",
-      "logo": "https://inadigiway.com{% static 'images/brand-logos/logo.png' %}",
-      "description": "{% trans 'Professional digital marketing agency offering web design, development, and digital marketing solutions.' %}",
-      "sameAs": [
-        "https://facebook.com/inadigiway",
-        "https://instagram.com/inadigiway",
-        "https://linkedin.com/company/inadigiway"
-      ],
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "Customer Service",
-        "email": "info@inadigiway.com",
-        "telephone": "+30 697 1907 299"
-      }
-    }
-    </script>
+    {% local_business_jsonld seo_description "https://inadigiway.com"|add:page_path %}
 </body>
 </html>

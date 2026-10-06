@@ -29,7 +29,7 @@
     <div class="hero__service-preview service-showcase service-showcase--left hero__service-preview--hero">
       <div class="service-showcase__image">
         {% if hero.service_image %}
-          <img src="{{ hero.service_image.url }}" alt="{{ hero|in_current_lang:"service_title" }}" class="service-showcase__img">
+          <img src="{{ hero.service_image|webp:1000 }}" srcset="{{ hero.service_image|webp_srcset:'500,1000' }}" sizes="(max-width: 768px) 50vw, 500px" fetchpriority="high" decoding="async" alt="{{ hero|in_current_lang:"service_title" }}" class="service-showcase__img">
         {% else %}
           <img src="{% static 'images/services/social-media.jpg' %}" alt="Social Media Marketing" class="service-showcase__img">
         {% endif %}

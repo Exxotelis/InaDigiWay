@@ -7,23 +7,23 @@
   <div class="about__content">
     <div class="about__image-side">
       {% if about.badge_top_left %}
-        <img src="{{ about.badge_top_left.url }}" alt="" class="about__badge about__badge--top-left" aria-hidden="true">
+        <img src="{{ about.badge_top_left|webp:400 }}" srcset="{{ about.badge_top_left|webp_srcset:'200,400' }}" sizes="(max-width: 768px) 80px, 200px" loading="lazy" decoding="async" alt="" class="about__badge about__badge--top-left" aria-hidden="true">
       {% else %}
         <img src="{% static 'images/about/41.png' %}" alt="" class="about__badge about__badge--top-left" aria-hidden="true">
       {% endif %}
       {% if about.badge_bottom_left %}
-        <img src="{{ about.badge_bottom_left.url }}" alt="" class="about__badge about__badge--bottom-left" aria-hidden="true">
+        <img src="{{ about.badge_bottom_left|webp:400 }}" srcset="{{ about.badge_bottom_left|webp_srcset:'200,400' }}" sizes="(max-width: 768px) 80px, 200px" loading="lazy" decoding="async" alt="" class="about__badge about__badge--bottom-left" aria-hidden="true">
       {% else %}
         <img src="{% static 'images/about/74.png' %}" alt="" class="about__badge about__badge--bottom-left" aria-hidden="true">
       {% endif %}
       {% if about.badge_bottom_right %}
-        <img src="{{ about.badge_bottom_right.url }}" alt="" class="about__badge about__badge--bottom-right" aria-hidden="true">
+        <img src="{{ about.badge_bottom_right|webp:400 }}" srcset="{{ about.badge_bottom_right|webp_srcset:'200,400' }}" sizes="(max-width: 768px) 80px, 200px" loading="lazy" decoding="async" alt="" class="about__badge about__badge--bottom-right" aria-hidden="true">
       {% else %}
         <img src="{% static 'images/about/35.png' %}" alt="" class="about__badge about__badge--bottom-right" aria-hidden="true">
       {% endif %}
       <div class="about__image-wrapper">
         {% if about.main_image %}
-          <img src="{{ about.main_image.url }}" alt="{{ about|in_current_lang:"intro_name" }}" class="about__image">
+          <img src="{{ about.main_image|webp:1000 }}" srcset="{{ about.main_image|webp_srcset:'600,1000' }}" sizes="(max-width: 768px) 60vw, 500px" loading="lazy" decoding="async" alt="{{ about|in_current_lang:"intro_name" }}" class="about__image">
         {% else %}
           <img src="{% static 'images/InaDigi.jpg' %}" alt="Ina Lasko" class="about__image">
         {% endif %}

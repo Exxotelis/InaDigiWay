@@ -1,0 +1,74 @@
+{% extends "admin/login.html" %}
+{% load static %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <style>
+    body.login {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(250, 1, 162, .35), transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(122, 225, 225, .25), transparent 45%),
+        #000000;
+    }
+    body.login #container {
+      width: 100%;
+      max-width: 400px;
+      margin: 0;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #FFFFFF;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, .45);
+    }
+    body.login #header {
+      display: block;
+      padding: 32px 32px 8px;
+      background: #FFFFFF;
+      border-bottom: 0;
+      text-align: center;
+    }
+    body.login #site-name { margin: 0; width: 100%; text-align: center; }
+    body.login #site-name a { display: flex; flex-direction: column; align-items: center; gap: 14px; color: #000000; }
+    body.login #site-name img { height: 96px; border-radius: 0; }
+    body.login #site-name span { font-size: 18px; color: #000000; }
+    body.login .theme-toggle { display: none; }
+    body.login #content { padding: 8px 32px 32px; }
+    body.login .form-row { padding: 6px 0; border: 0; }
+    body.login .form-row label { display: block; margin-bottom: 6px; font-weight: 600; color: #333333; }
+    body.login .form-row input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px 14px;
+      border: 1.5px solid #DDDDDD;
+      border-radius: 10px;
+      font-size: 15px;
+      background: #FFFFFF;
+      color: #000000;
+    }
+    body.login .form-row input:focus {
+      outline: none;
+      border-color: #FA01A2;
+      box-shadow: 0 0 0 3px rgba(250, 1, 162, .18);
+    }
+    body.login .submit-row { padding: 16px 0 0; margin: 0; text-align: center; }
+    body.login .submit-row input {
+      width: 100%;
+      padding: 13px;
+      border: 0;
+      border-radius: 10px;
+      background: #FA01A2;
+      color: #FFFFFF;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      cursor: pointer;
+    }
+    body.login .submit-row input:hover { background: #C80182; }
+    body.login .password-reset-link { text-align: center; }
+    body.login .errornote { border-radius: 10px; }
+  </style>
+{% endblock %}

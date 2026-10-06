@@ -10,8 +10,34 @@ from .models import (
 
 @admin.register(SiteSettings)
 class SiteSettingsAdmin(admin.ModelAdmin):
-	list_display = ("calendly_url", "updated_at")
+	list_display = ("display_name", "calendly_url", "updated_at")
+	list_display_links = ("display_name",)
 	ordering = ("-updated_at",)
+	readonly_fields = ("og_image_preview", "updated_at")
+	fieldsets = (
+		("Booking", {"fields": ("calendly_url",)}),
+		("SEO: page title", {"fields": (("meta_title_en", "meta_title_el"),)}),
+		("SEO: meta description", {
+			"fields": ("meta_description_en", "meta_description_el"),
+			"description": "Shown under the title in Google results. Aim for 140-160 characters.",
+		}),
+		("SEO: other", {"fields": ("meta_keywords", "og_image", "og_image_preview")}),
+		("Google AdSense", {
+			"fields": ("adsense_enabled", "adsense_publisher_id"),
+			"description": "Turning AdSense off removes the AdSense script and /ads.txt from the site.",
+		}),
+		("Info", {"fields": ("updated_at",), "classes": ("collapse",)}),
+	)
+
+	@admin.display(description="Site Settings")
+	def display_name(self, obj):
+		return "Site Settings"
+
+	@admin.display(description="Current share image")
+	def og_image_preview(self, obj):
+		if obj and obj.og_image:
+			return format_html('<img src="{}" style="max-width:300px;border-radius:8px;">', obj.og_image.url)
+		return "Default image (static/images/og-image.png)"
 
 	def has_add_permission(self, request):
 		return not SiteSettings.objects.exists()

@@ -1,9 +1,63 @@
+import re
+
+from django.core.exceptions import ValidationError
 from django.db import models
 
 
 class SiteSettings(models.Model):
 	calendly_url = models.URLField(blank=True, default="")
+
+	# SEO / meta tags
+	meta_title_en = models.CharField(max_length=120, default="InaDigiWay - Digital Marketing Agency", verbose_name="Page title (EN)")
+	meta_title_el = models.CharField(max_length=120, default="InaDigiWay - Digital Marketing Agency", verbose_name="Page title (EL)")
+	meta_description_en = models.TextField(
+		max_length=320,
+		default="Professional digital marketing agency offering web design, development, and digital marketing solutions.",
+		verbose_name="Meta description (EN)",
+	)
+	meta_description_el = models.TextField(
+		max_length=320,
+		default="Επαγγελματική ψηφιακή μάρκετινγκ αγορά που προσφέρει σχεδιασμό ιστοσελίδων, ανάπτυξη και ψηφιακές λύσεις μάρκετινγκ.",
+		verbose_name="Meta description (EL)",
+	)
+	meta_keywords = models.CharField(
+		max_length=255,
+		blank=True,
+		default="digital marketing, web design, web development, SEO, branding, social media marketing",
+		verbose_name="Meta keywords",
+	)
+	og_image = models.ImageField(
+		upload_to="seo/",
+		blank=True,
+		null=True,
+		verbose_name="Share image (Facebook, LinkedIn, X)",
+		help_text="Recommended 1200x630. Leave empty to use the default image.",
+	)
+
+	# Google AdSense
+	adsense_enabled = models.BooleanField(default=True, verbose_name="AdSense enabled")
+	adsense_publisher_id = models.CharField(
+		max_length=40,
+		blank=True,
+		default="ca-pub-7179497516124377",
+		verbose_name="AdSense publisher ID",
+		help_text="From AdSense: Account > Settings > Account information, e.g. ca-pub-1234567890123456. Also used for /ads.txt.",
+	)
+
 	updated_at = models.DateTimeField(auto_now=True)
+
+	def clean(self):
+		super().clean()
+		if (self.adsense_publisher_id or "").strip() and not self.adsense_client:
+			raise ValidationError({"adsense_publisher_id": "Use the format ca-pub-1234567890123456 (or pub-1234567890123456)."})
+
+	@property
+	def adsense_client(self) -> str:
+		"""Publisher ID normalised to the ca-pub-XXXX form used by the AdSense script."""
+		value = (self.adsense_publisher_id or "").strip()
+		if value.startswith("pub-"):
+			value = "ca-" + value
+		return value if re.fullmatch(r"ca-pub-\d{10,20}", value) else ""
 
 	def __str__(self) -> str:
 		return "Site Settings"
@@ -284,6 +338,12 @@ class FooterContent(models.Model):
 	instagram_url = models.URLField(default="https://www.instagram.com/inadigiway", verbose_name="Instagram URL")
 	facebook_url = models.URLField(default="https://www.facebook.com/61575931331769", verbose_name="Facebook URL")
 	linkedin_url = models.URLField(default="https://linkedin.com", verbose_name="LinkedIn URL")
+	google_business_url = models.URLField(
+		blank=True,
+		default="https://maps.google.com/?cid=4682699893593634570",
+		verbose_name="Google Business Profile URL",
+		help_text="Google Maps link of the business profile (footer icon + structured data). Leave empty to hide.",
+	)
 	
 	# Contact Info
 	phone_label_en = models.CharField(max_length=10, default="P.", verbose_name="Phone Label (EN)")
